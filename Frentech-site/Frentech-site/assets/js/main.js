@@ -15,10 +15,11 @@
 
     // === logo change
     if (ud_header.classList.contains("sticky")) {
-      logo.src = "assets/images/logo/logo-2.svg";
+      logo.src = "assets/images/frenlogo2_converted.svg";
     } else {
-      logo.src = "assets/images/logo/logo.svg";
+      logo.src = "assets/images/frenlogo_converted.svg";
     }
+
 
     // show or hide the back-top-top button
     const backToTop = document.querySelector(".back-to-top");
