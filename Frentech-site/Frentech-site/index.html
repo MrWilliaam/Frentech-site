@@ -1,13 +1,3 @@
-<!-- =========
-
-	Template Name: Play
-	Author: UIdeck
-	Author URI: https://uideck.com/
-	Support: https://uideck.com/support/
-	Version: 1.1
-
-========== -->
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -33,6 +23,74 @@
 <meta property="twitter:title" content="Play - Free Open Source HTML Bootstrap Template by UIdeck">
 <meta property="twitter:description" content="Play - Free Open Source HTML Bootstrap Template by UIdeck Team">
 <meta property="twitter:image" content="https://uideck.com/wp-content/uploads/2021/09/play-meta-bs.jpg">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+
+<style>
+.contact-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s ease, visibility 0.2s ease;
+}
+
+.contact-popup.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.popup-content {
+  background: white;
+  padding: 20px 30px;
+  border-radius: 10px;
+  width: 300px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  text-align: center;
+  position: relative;
+}
+
+.ud-feature-link {
+  cursor: pointer;
+
+.popup-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  flex-wrap: nowrap;   /* prevent wrapping */
+}
+
+.popup-header h3 {
+  margin: 0;
+  font-size: 20px;
+  /* flex-grow: 1;  optional, try removing if causing trouble */
+  white-space: nowrap; /* keep text on single line */
+}
+
+.close-btn {
+  font-size: 20px;
+  color: #333;
+  cursor: pointer;
+  transition: color 0.2s ease;
+  display: inline-block; /* crucial: make sure it's inline-block */
+  margin-left: 15px; 
+}
+
+.close-btn:hover {
+  color: #dc3545;
+}
+
+
+</style>
+
 
     <!--====== Favicon Icon ======-->
     <link
@@ -264,7 +322,7 @@
                 <p class="ud-feature-desc">
                   popis
                 </p>
-                <a href="#contact" class="ud-feature-link">
+                <a class="ud-feature-link" onclick="showContactPopup('email@example.com', '+420 123 456 789')">
                   Kontakt
                 </a>
               </div>
@@ -280,7 +338,7 @@
                 <p class="ud-feature-desc">
                   popis
                 </p>
-                <a href="#contact" class="ud-feature-link">
+                <a class="ud-feature-link" onclick="showContactPopup('email@frentech.com', '+420 123 466 789')">
                   Kontakt
                 </a>
               </div>
@@ -296,7 +354,7 @@
                 <p class="ud-feature-desc">
                   Popis
                 </p>
-                <a href="#contact" class="ud-feature-link">
+                <a class="ud-feature-link" onclick="showContactPopup('email@example.com', '+420 123 456 789')">
                   Kontakt
                 </a>
               </div>
@@ -312,7 +370,7 @@
                 <p class="ud-feature-desc">
                   Popis
                 </p>
-                <a href="#contact" class="ud-feature-link">
+                <a class="ud-feature-link" onclick="showContactPopup('email@example.com', '+420 123 456 789')">
                   Kontakt
                 </a>
               </div>
@@ -495,7 +553,7 @@
               </div>
               <div class="ud-team-info">
                 <h5>Vilém Janečka</h5>
-                <h6>Web developer</h6>
+                <h6>Web Developer</h6>
               </div>
               <ul class="ud-team-socials">
                 <li>
@@ -504,7 +562,7 @@
                   </a>
                 </li>
                 <li>
-                  <a href="https://twitter.com/MusharofChy">
+                  <a href="https://www.instagram.com/vilaann_/">
                     <i class="lni lni-instagram-filled"></i>
                   </a>
                 </li>
@@ -526,16 +584,16 @@
               </div>
               <div class="ud-team-info">
                 <h5>Oleksandr Potomkin</h5>
-                <h6>Web developer, 3D Tisk</h6>
+                <h6>Web Developer, 3D Tisk</h6>
               </div>
               <ul class="ud-team-socials">
                 <li>
-                  <a href="https://twitter.com/MusharofChy">
+                  <a href="">
                     <i class="lni lni-linkedin-original"></i>
                   </a>
                 </li>
                 <li>
-                  <a href="https://twitter.com/MusharofChy">
+                  <a href="https://www.instagram.com/oleksandr.potomkin/">
                     <i class="lni lni-instagram-filled"></i>
                   </a>
                 </li>
@@ -557,7 +615,7 @@
               </div>
               <div class="ud-team-info">
                 <h5>Mikuláš Vašek</h5>
-                <h6>Vizualizace & design, IT Technik</h6>
+                <h6>Vizualizace & Design, IT Technik</h6>
               </div>
               <ul class="ud-team-socials">
                 <li>
@@ -566,7 +624,7 @@
                   </a>
                 </li>
                 <li>
-                  <a href="https://twitter.com/MusharofChy">
+                  <a href="https://www.instagram.com/mikesek_vasek/">
                     <i class="lni lni-instagram-filled"></i>
                   </a>
                 </li>
@@ -588,7 +646,7 @@
               </div>
               <div class="ud-team-info">
                 <h5>Ondřej Boháč</h5>
-                <h6>Vizualizace & design</h6>
+                <h6>Vizualizace & Design</h6>
               </div>
               <ul class="ud-team-socials">
                 <li>
@@ -597,7 +655,7 @@
                   </a>
                 </li>
                 <li>
-                  <a href="https://twitter.com/MusharofChy">
+                  <a href="https://www.instagram.com/ondri_sek">
                     <i class="lni lni-instagram-filled"></i>
                   </a>
                 </li>
@@ -629,7 +687,7 @@
                   </a>
                 </li>
                 <li>
-                  <a href="https://twitter.com/MusharofChy">
+                  <a href="https://www.instagram.com/lukaasmil/">
                     <i class="lni lni-instagram-filled"></i>
                   </a>
                 </li>
@@ -660,7 +718,7 @@
                   </a>
                 </li>
                 <li>
-                  <a href="https://twitter.com/MusharofChy">
+                  <a href="https://www.instagram.com/dejv801/">
                     <i class="lni lni-instagram-filled"></i>
                   </a>
                 </li>
@@ -691,7 +749,7 @@
                   </a>
                 </li>
                 <li>
-                  <a href="https://twitter.com/MusharofChy">
+                  <a href="https://www.instagram.com/matynekk_q/">
                     <i class="lni lni-instagram-filled"></i>
                   </a>
                 </li>
@@ -731,8 +789,8 @@
                     <i class="lni lni-envelope"></i>
                   </div>
                   <div class="ud-info-meta">
-                     <h5>Sociální sítě</h5>
-                    <p>Instagram: </p>
+                     <h5>Sociální sítě</h5> 
+                    <p>Instagram:</p>
                     <p>Facebook: </p>
                     <p>LinkedIn: </p>
                 </ul>
@@ -760,23 +818,6 @@
                 <p class="ud-widget-desc">
                  3D tisk, weby a grafika – vše pod jednou střechou
                 </p>
-                <ul class="ud-widget-socials">
-                  <li>
-                    <a href="https://twitter.com/MusharofChy">
-                      <i class="lni lni-facebook-filled"></i>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="https://twitter.com/MusharofChy">
-                      <i class="lni lni-instagram-filled"></i>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="https://twitter.com/MusharofChy">
-                      <i class="lni lni-linkedin-original"></i>
-                    </a>
-                  </li>
-                </ul>
               </div>
             </div>
         <div class="ud-footer-bottom">
@@ -799,7 +840,7 @@
       <i class="lni lni-chevron-up"> </i>
     </a>
     <!-- ====== Back To Top End ====== -->
-
+    
     <!-- ====== All Javascript Files ====== -->
     <script src="assets/js/bootstrap.bundle.min.js"></script>
     <script src="assets/js/wow.min.js"></script>
@@ -845,7 +886,36 @@
         }
       }
 
-      window.document.addEventListener("scroll", onScroll);
+      function showContactPopup(email, phone) {
+        const popup = document.getElementById('contactPopup');
+        document.getElementById('popupEmail').textContent = 'Email: ' + email;
+        document.getElementById('popupPhone').textContent = 'Telefon: ' + phone;
+
+        popup.classList.add('show');
+      }
+
+      function closeContactPopup() {
+        const popup = document.getElementById('contactPopup');
+        popup.classList.remove('show');
+      }
+
+      // Optional: Close popup when clicking outside the content
+      window.onclick = function(event) {
+        const popup = document.getElementById('contactPopup');
+        if (event.target === popup) {
+          closeContactPopup();
+        }
+      };
     </script>
+
+    <div id="contactPopup" class="contact-popup">
+      <div class="popup-content">
+        <div class="popup-header">
+          <h3>Kontakt</h3>
+        </div>
+        <p id="popupEmail"></p>
+        <p id="popupPhone"></p>
+      </div>
+
   </body>
 </html>
