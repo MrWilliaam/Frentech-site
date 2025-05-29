@@ -26,6 +26,33 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
 
 <style>
+  /* ------------- Wrapper stays flex for text-and-image layout ------------- */
+.ud-about-wrapper {
+  display: flex;
+  align-items: center;          /* keep the two columns vertically centred */
+  justify-content: space-between;
+}
+
+/* ------------- Image column ------------- */
+.ud-about-image {
+  /* give the picture column a bit more real estate (= “a little bigger”) */
+  flex: 0 0 42%;                /* tweak the % to taste */
+
+  /* equal spacing from the section’s top, bottom & right edges */
+  margin: 2.5rem 2.5rem 2.5rem 0;
+  /*  ↑        ↑        ↑        ↑
+     top     right    bottom   left (0) */
+}
+
+/* ------------- Actual <img> tweaks ------------- */
+.about-img {
+  width: 100%;                  /* fill its flex column */
+  height: auto;                 /* keep proportions */
+  border: 4px solid #ddd;       /* or any colour you prefer */
+  border-radius: 12px;          /* rounded corners */
+  box-shadow: 0 4px 12px rgba(0,0,0,.1);   /* optional subtle shadow */
+}
+
 .contact-popup {
   position: fixed;
   top: 0;
@@ -290,7 +317,7 @@
             </div>
           </div>
           <div class="ud-about-image">
-            <img src="assets/images/about/about-image.svg" alt="about-image" />
+            <img src="assets/images/about/team.png" alt="about-image" class="about-img" />
           </div>
         </div>
       </div>
