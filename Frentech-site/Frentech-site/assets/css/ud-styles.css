@@ -16,7 +16,7 @@
   --body-color: #677888;
   --heading-color: #212b36;
   --primary-color: #2a343b;
-  --white: #e9e4e4d5  ;
+  --white: #f3f4fe  ;
 }
 
 body {
@@ -798,7 +798,6 @@ p {
 
 .ud-about-wrapper {
   background: var(--white);
-  border: 1px solid rgba(0, 0, 0, 0.08);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
