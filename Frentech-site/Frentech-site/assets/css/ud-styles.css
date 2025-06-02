@@ -16,11 +16,7 @@
   --body-color: #677888;
   --heading-color: #212b36;
   --primary-color: #2a343b;
-<<<<<<< HEAD
-  --white: #f3f4fe  ;
-=======
   --white:  #ebebeb;
->>>>>>> 27d8896 (Poslední úpravy)
 }
 
 body {
@@ -790,7 +786,7 @@ p {
 
 /* ===== About CSS ===== */
 .ud-about {
-  background: #ccccec;
+  background: #d2d2e2;
   padding: 120px 0;
 }
 
@@ -1118,7 +1114,7 @@ p {
   top: 0;
   left: 0;
   height: 50%;
-  background: #ccccec;
+  background: #d2d2e2;
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
