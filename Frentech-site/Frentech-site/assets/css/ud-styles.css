@@ -2401,3 +2401,37 @@ p {
   }
 }
 /*# sourceMappingURL=ud-styles.css.map */
+/* Center the navbar items absolutely so "O nás" is in the center of screen */
+/* === CUSTOM NAVBAR FIXES FOR CENTERING "O NÁS" === */
+
+.navbar {
+  position: relative;
+  justify-content: flex-start;
+  align-items: center;
+  display: flex;
+}
+
+.navbar-nav {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.navbar-nav .nav-item {
+  padding: 0;
+}
+
+@media (max-width: 991px) {
+  .navbar-nav {
+    gap: 24px;
+  }
+}
+
+/* === END CUSTOM NAVBAR FIXES === */
