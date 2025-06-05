@@ -248,7 +248,7 @@
           <h3>Tvorba webu</h3>
           <p>Moderní web na míru, responzivní design, nastavení technických prvků SEO.</p>
           <p class="fw-bold">od 6000 do 11000 Kč</p>
-          <a class="kontakt-btn" onclick="showContactPopup('email@example.com', '+420 123 456 789')">Kontakt</a>
+          <a class="kontakt-btn" onclick="showContactPopup('kontakt@frentech.org', '+420 792 313 185')">Kontakt</a>
         </div>
         </div>
       </div>
@@ -262,8 +262,8 @@
           </div>
           <h3>Správa webu</h3>
           <p>Pravidelná aktualizace obsahu. Doména, spolehlivý hosting a technická podpora 24/7.</p>
-          <p class="fw-bold">od 4300 Kč / rok</p>
-          <a class="kontakt-btn" onclick="showContactPopup('email@frentech.com', '+420 123 466 789')">Kontakt</a>
+          <p class="fw-bold">od 4000 Kč / rok</p>
+          <a class="kontakt-btn" onclick="showContactPopup('kontakt@frentech.org', '+420 792 313 185')">Kontakt</a>
         </div>
         </div>
       </div>
@@ -276,9 +276,9 @@
             <i class="bi bi-printer fs-1"></i>
           </div>
           <h3>3D Tisk</h3>
-          <p>Zakázkový 3D tisk a modelování na míru z PLA, PETG a dalších materiálů.</p>
-          <p class="fw-bold">od xxxx Kč / gram</p>
-          <a class="kontakt-btn" onclick="showContactPopup('email@example.com', '+420 730 652 556')">Kontakt</a>
+          <p>Zakázkový 3D tisk a modelování na míru z PLA, PETG, ASA a PC a dalších materialů.</p>
+          <p class="fw-bold">od 0,4Kč / gram / PLA</p>
+          <a class="kontakt-btn" onclick="showContactPopup('kontakt@frentech.org', '+420 730 652 556')">Kontakt</a>
         </div>
         </div>
       </div>
@@ -291,9 +291,9 @@
             <i class="bi bi-palette fs-1"></i>
           </div>
           <h3>Grafický design</h3>
-          <p>Tvorba firemních log, vizitek, bannerů a dalšího vizuálního obsahu.</p>
-          <p class="fw-bold">od xxx Kč</p>
-          <a class="kontakt-btn" onclick="showContactPopup('email@example.com', '+420 123 456 789')">Kontakt</a>
+          <p>Střih videí, tvorba firemních log, vizitek, bannerů a dalšího vizuálního obsahu.</p>
+          <p class="fw-bold">od 1000 Kč</p>
+          <a class="kontakt-btn" onclick="showContactPopup('kontakt@frentech.org', '+420 725 932 874')">Kontakt</a>
         </div>
       </div>
       </div>
@@ -584,7 +584,10 @@
               </div>
               <div class="ud-info-meta">
                 <h5>Kontakt</h5>
-                <p>Email: kontakt@frentech.org<br /> Tel.: 733 423 037</p>
+                <p>
+                  Email: <a href="mailto:kontakt@frentech.org">kontakt@frentech.org</a><br />
+                  Tel.: <a href="tel:+420733423037">733 423 037</a> 
+                </p>
               </div>
             </div>
             <div class="ud-single-info d-flex">
@@ -593,9 +596,8 @@
               </div>
               <div class="ud-info-meta">
                 <h5>Sociální sítě</h5>
-                <p>Instagram:</p>
-                <p>Facebook:</p>
-                <p>TikTok:</p>
+                <p>Instagram: <a href="https://instagram.com/frentech_org" target="_blank">@frentech_org</a></p>
+                <p>Facebook: <a href="https://www.facebook.com/profile.php?id=61576707370467" target="_blank">Frentech</a></p>
               </div>
             </div>
           </div>
@@ -696,12 +698,15 @@
       }
 
       function showContactPopup(email, phone) {
-        const popup = document.getElementById('contactPopup');
-        document.getElementById('popupEmail').textContent = 'Email: ' + email;
-        document.getElementById('popupPhone').textContent = 'Telefon: ' + phone;
+      const popup = document.getElementById('contactPopup');
+      document.getElementById('popupEmail').innerHTML = 
+        'Email: <a href="mailto:' + email + '">' + email + '</a>';
+      document.getElementById('popupPhone').innerHTML = 
+        'Telefon: <a href="tel:' + phone.replace(/\s+/g, '') + '">' + phone + '</a>';
 
-        popup.classList.add('show');
-      }
+      popup.classList.add('show');
+    }
+
 
       function closeContactPopup() {
         const popup = document.getElementById('contactPopup');
