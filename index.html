@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Frentech</title>
+<!-- Lightbox2 CSS -->
 
     <!-- Meta tagy -->
 <meta name="title" content="Frentech">
@@ -25,9 +26,15 @@
 <meta property="twitter:image" content="">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<!-- jQuery (must come before Lightbox2) -->
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css" rel="stylesheet">
+
 
 
 <style>
+
+
   
   .card-custom {
   background-color: #f3f4fe;
@@ -71,12 +78,18 @@
 }
 
 /* ------------- Actual <img> tweaks ------------- */
+.about-img-wrapper {
+  border-radius: 12px;
+  overflow: hidden;
+  border: 2px solid lavender;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  max-width: 100%;
+}
+
 .about-img {
-  width: 100%;                  /* fill its flex column */
-  height: auto;                 /* keep proportions */
-  border: 4px solid #e1e3f5; 
-  border-radius: 12px;         
-  box-shadow: 0 4px 12px rgba(0,0,0,.1);   /* optional subtle shadow */
+  width: 100%;
+  height: auto;
+  display: block;
 }
 
 .uvod-img {
@@ -161,7 +174,7 @@
     <link rel="stylesheet" href="assets/css/animate.css" />
     <link rel="stylesheet" href="assets/css/lineicons.css" />
     <link rel="stylesheet" href="assets/css/ud-styles.css" />
-  </head>
+</head>
   <body>
 
 
@@ -277,7 +290,7 @@
           </div>
           <h3>3D Tisk</h3>
           <p>Zakázkový 3D tisk a modelování na míru z PLA, PETG, ASA a PC a dalších materialů.</p>
-          <p class="fw-bold">od 2-5 Kč / gram / PLA</p>
+          <p class="fw-bold">od 2 Kč / gram</p>
           <a class="kontakt-btn" onclick="showContactPopup('kontakt@frentech.org', '+420 730 652 556')">Kontakt</a>
         </div>
         </div>
@@ -292,7 +305,7 @@
           </div>
           <h3>Grafický design</h3>
           <p>Střih videí, tvorba firemních log, vizitek, bannerů a dalšího vizuálního obsahu.</p>
-          <p class="fw-bold">od 1000 Kč</p>
+          <p class="fw-bold">od 2000 Kč</p>
           <a class="kontakt-btn" onclick="showContactPopup('kontakt@frentech.org', '+420 725 932 874')">Kontakt</a>
         </div>
       </div>
@@ -304,27 +317,34 @@
 
 
     <!-- ====== O nás start ====== -->
-    <section id="about" class="ud-about">
-      <div class="container">
-        <div class="ud-about-wrapper wow fadeInUp" data-wow-delay=".25s" style="animation-duration: 2s;">
-          <div class="ud-about-content-wrapper">
-            <div class="ud-about-content">
-              <span class="tag">O nás</span>
-              <h2>Kde se nápady mění v realitu</h2>
+  <section id="about" class="ud-about">
+    <div class="container">
+      <div class="ud-about-wrapper wow fadeInUp" data-wow-delay=".25s" style="animation-duration: 2s;">
+        <div class="ud-about-content-wrapper">
+          <div class="ud-about-content">
+            <span class="tag">O nás</span>
+            <h2>Kde se nápady mění v realitu</h2>
 
-              <p style="margin-bottom: -80px;">
-                Jsme tým mladých a zapálených lidí, kteří se věnují vývoji webů, 3D tisku a grafickému designu. Naším cílem je poskytovat kvalitní a dostupná řešení jak pro jednotlivce, tak pro firmy.
-                 Ke každému projektu přistupujeme individuálně a s důrazem na detail.
-              </p>
-            </div>
-          </div>
-          <div class="ud-about-image">
-            <img src="assets/images/about/team.png" alt="about-image" class="about-img" style="margin-left: 20px;"/>
+            <p style="margin-bottom: -80px;">
+              Jsme tým mladých a zapálených lidí, kteří se věnují vývoji webů, 3D tisku a grafickému designu. Naším cílem je poskytovat kvalitní a dostupná řešení jak pro jednotlivce, tak pro firmy.
+              Ke každému projektu přistupujeme individuálně a s důrazem na detail.
+            </p>
           </div>
         </div>
+        <div class="ud-about-image about-img" >
+         <a href="assets/images/about/team.png" data-lightbox="about" data-title="Náš tým">
+  <div class="about-img-wrapper">
+    <img src="assets/images/about/team.png" alt="Náš tým" class="about-img" />
+  </div>
+</a>
+
+
+        </div>
       </div>
-    </section>
-    <!-- ====== O nás konec ====== -->
+    </div>
+  </section>
+  <!-- ====== O nás konec ====== -->
+
 
      <!-- ====== Tým Start ====== -->
     <section id="team" class="ud-team">
@@ -730,6 +750,11 @@
         <p id="popupEmail"></p>
         <p id="popupPhone"></p>
       </div>
+<!-- Lightbox2 JS -->
+  <!-- Load jQuery first -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <!-- Then load Lightbox -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
 
   </body>
 </html>
