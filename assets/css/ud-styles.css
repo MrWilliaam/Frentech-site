@@ -1,3 +1,101 @@
+/* === CUSTOM RESPONSIVE FIXES FOR SERVICES SECTION & CARDS === */
+.card-custom {
+  background-color: #f3f4fe;
+  padding: 28px 22px 24px 22px;
+  border: 2px solid #e1e3f5;
+  border-radius: 12px;
+  box-sizing: border-box;
+  margin-bottom: 0;
+  min-height: 260px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.card-custom h3 {
+  margin-top: 0;
+  margin-bottom: 12px;
+  font-size: 1.18rem;
+}
+.card-custom p {
+  margin-bottom: 10px;
+  font-size: 1rem;
+}
+.card-custom .kontakt-btn {
+  margin-top: auto;
+}
+
+.ud-služby {
+  padding: 64px 0 64px 0;
+  background: #fff;
+  margin-bottom: 0;
+}
+.ud-služby .row {
+  margin-left: 0;
+  margin-right: 0;
+}
+.ud-section-title {
+  margin-bottom: 40px;
+  padding-left: 0;
+  padding-right: 0;
+}
+.ud-single-team {
+  margin-bottom: 30px;
+  height: 100%;
+}
+
+@media (max-width: 991.98px) {
+  .ud-služby {
+    padding: 44px 0 44px 0;
+  }
+  .card-custom {
+    padding: 20px 12px 18px 12px;
+    min-height: 220px;
+  }
+}
+@media (max-width: 767.98px) {
+  .ud-služby {
+    padding: 32px 0 32px 0;
+  }
+  .card-custom {
+    padding: 16px 8px 14px 8px;
+    min-height: 180px;
+  }
+  .ud-section-title {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+}
+@media (max-width: 575.98px) {
+  .ud-služby {
+    padding: 18px 0 18px 0;
+  }
+  .card-custom {
+    padding: 10px 4px 10px 4px;
+    min-height: 120px;
+  }
+  .ud-section-title {
+    padding-left: 4px;
+    padding-right: 4px;
+  }
+}
+
+/* Sekce oddělení pozadí a mezery mezi sekcemi */
+section {
+  margin-bottom: 0;
+}
+section + section {
+  margin-top: 48px;
+}
+@media (max-width: 991.98px) {
+  section + section {
+    margin-top: 32px;
+  }
+}
+@media (max-width: 575.98px) {
+  section + section {
+    margin-top: 18px;
+  }
+}
 /* =======
 
 	Template Name: Play Bootstrap
@@ -282,7 +380,7 @@ p {
   top: -7px;
 }
 
-@media only screen and (min-width: 768px) and (max-width: 991px), (max-width: 767px) {
+@media only screen and (min-width: 768px) and (max-width: 991px) , (max-width: 767px) {
   .navbar-collapse {
     position: absolute;
     top: 100%;
@@ -328,7 +426,7 @@ p {
 .navbar-nav .nav-item > a {
   font-size: 16px;
   font-weight: 400;
-  color: var(--white);
+  color: var(--primary-color);
   -webkit-transition: all 0.3s ease-out 0s;
   transition: all 0.3s ease-out 0s;
   padding: 25px 8px;
@@ -507,8 +605,9 @@ p {
 
 /* ===== Hero CSS ===== */
 .ud-hero {
-  background: var(--primary-color);
-  padding-top: 180px;
+  background: var(--lavender);
+  padding: 6rem 0;
+
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
@@ -1257,7 +1356,8 @@ p {
 
 /* ===== Footer CSS ===== */
 .ud-footer {
-  background: var(--heading-color);
+  background: #E6E6FA;
+  background: linear-gradient(180deg, rgba(230, 230, 250, 1) 0%, rgba(210, 210, 226, 1) 100%);
   padding-top: 100px;
   position: relative;
   z-index: 1;
@@ -1301,7 +1401,7 @@ p {
 .ud-widget .ud-widget-desc {
   font-size: 15px;
   line-height: 24px;
-  color: #f3f4fe;
+  color: var(--text-primary);
   margin-bottom: 30px;
   max-width: 360px;
 }
@@ -1532,7 +1632,6 @@ p {
   margin: 10px;
   border-radius: 6px;
   color: var(--white);
-  font-size: 20px;
 }
 
 .ud-socials-connect ul li a.facebook {
@@ -2443,8 +2542,103 @@ p {
   margin-top: 40px; /* adjust as needed */
 }
 
-@media (max-width: 767.98px) {
-  .navbar-nav .nav-link {
-    display: none !important;
+
+:root {
+  --lavender: #d2d2e2;
+  --card-bg: #ebebeb;
+  --text-primary: #2a343b;
+  --text-deep: #212b36;
+  --white: #ffffff;
+  --accent-indigo: #5a57d8;
+}
+
+.ud-hero123 {
+  min-height: auto;
+  background: var(--lavender);
+  padding: 6rem 0;
+}
+
+.ud-hero-title1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+
+.ud-hero-title122 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.2;
+}
+
+.ud-hero-desc1 {
+  font-size: 1.1rem;
+  color: var(--text-primary);
+  margin-bottom: 2rem;
+  max-width: 500px;
+}
+
+.btn-primary {
+  display: inline-block;
+  background: var(--accent-indigo);
+  color: var(--white);
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.3s;
+}
+.btn-primary:hover {
+  background: #4744b6;
+}
+
+.uvod-img {
+  max-width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+}
+
+/* Footer <-> Kontakt alignment fix */
+@media (min-width: 992px) {
+  /* Make footer left column match the contact column inner padding */
+  .ud-footer .col-xl-8.col-lg-7 {
+    padding-left: 25px;
+    padding-right: 0;
+  }
+
+  /* Prevent earlier rules from shifting the widget text */
+  .ud-footer .ud-widget-desc {
+    margin-left: 0 !important;
+  }
+
+  /* Stack the address vertically and align it to the left of that column */
+  .ud-footer-bottom .ud-footer-bottom-left {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    padding: 0;
+    margin: 0;
+    color: var(--text-primary);
+  }
+
+  .ud-footer-bottom .ud-footer-bottom-left p,
+  .ud-footer-bottom .ud-footer-bottom-left a {
+    margin: 0 0 8px 0;
+    color: var(--text-primary);
+  }
+}
+
+/* Keep consistent horizontal padding on smaller screens */
+@media (max-width: 991.98px) {
+  .ud-footer .col-xl-8.col-lg-7 {
+    padding-left: 25px;
+    padding-right: 25px;
+  }
+  .ud-footer-bottom .ud-footer-bottom-left {
+    text-align: left;
+    align-items: flex-start;
   }
 }

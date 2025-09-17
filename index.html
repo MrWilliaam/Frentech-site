@@ -9,7 +9,7 @@
 
     <!-- Meta tagy -->
 <meta name="title" content="Frentech">
-<meta name="description" content="Zaměřujeme se na tvorbu webů, 3D tisk, správu a design — vše rychle, spolehlivě a na míru.">
+<meta name="description" content="Zaměřujeme se na tvorbu webů, 3D tisk, opravy mobilů, tabletů a počítačů — vše rychle, spolehlivě a na míru.">
 
 <!-- Facebook -->
 <meta property="og:type" content="website">
@@ -25,7 +25,6 @@
 <meta property="twitter:description" content="Zaměřujeme se na tvorbu webů, 3D tisk, správu a design — vše rychle, spolehlivě a na míru.">
 <meta property="twitter:image" content="">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <!-- jQuery (must come before Lightbox2) -->
 
 <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css" rel="stylesheet">
@@ -126,20 +125,19 @@
 
 .ud-feature-link {
   cursor: pointer;
+} 
 
 .popup-header {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  margin-bottom: 10px;
-  flex-wrap: nowrap;   /* prevent wrapping */
+  text-align: center;
 }
 
 .popup-header h3 {
+  width: 100%;
+  text-align: center;
   margin: 0;
-  font-size: 20px;
-  
-  white-space: nowrap; /* keep text on single line */
 }
 
 .close-btn {
@@ -155,6 +153,115 @@
   color: #dc3545;
 }
 
+.menu-bg {
+  background: transparent;
+  border-radius: 12px;
+  box-shadow: none;
+  padding: 20px 0;
+  margin-top: 10px;
+  position: relative;
+  z-index: 1051;
+  transition: none;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+@media (max-width: 991.98px) {
+  .menu-bg {
+    position: absolute;
+    top: 60px; /* height of your navbar */
+    left: 0;
+    right: 0;
+    width: 100vw;
+    background: rgba(30, 32, 50, 0.98);
+    border-radius: 0 0 12px 12px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+    z-index: 2000;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    max-height: calc(60px * 5); /* 5 menu items × 60px each */
+    overflow-y: auto;
+    padding: 0;
+    margin-top: 0;
+    /* REMOVE display: none; Bootstrap will handle it */
+  }
+  .menu-bg ul.navbar-nav {
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    gap: 0;
+    margin: 0;
+    padding: 0;
+  }
+  .menu-bg .nav-link {
+    color: #fff !important;
+    font-size: 2.2rem;
+    font-weight: 700;
+    padding: 1rem 0;
+    transition: color 0.2s;
+  }
+  .menu-bg .nav-link:hover,
+  .menu-bg .nav-link.active {
+    color: #aab4ff !important;
+  }
+}
+.navbar-toggler {
+  border: none;
+  outline: none;
+  margin-left: auto;
+  /* Ensures right alignment */
+}
+
+/* Optional: make burger icon darker */
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba%280,0,0,0.7%29' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+
+/* Hide the custom menu by default */
+.menu-bg-custom {
+  display: none;
+}
+
+/* Show only on mobile and only when active */
+@media (max-width: 991.98px) {
+  .menu-bg-custom {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(30, 32, 50, 0.98);
+    z-index: 2000;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: none;
+  }
+  .menu-bg-custom.active {
+    display: flex !important;
+  }
+  .menu-bg-custom ul.navbar-nav {
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    gap: 2.5rem;
+    margin: 0;
+    padding: 0;
+  }
+  .menu-bg-custom .nav-link {
+    color: #fff !important;
+    font-size: 2.2rem;
+    font-weight: 700;
+    padding: 1rem 0;
+    transition: color 0.2s;
+  }
+  .menu-bg-custom .nav-link:hover,
+  .menu-bg-custom .nav-link.active {
+    color: #aab4ff !important;
+  }
+}
 </style>
 
 
@@ -181,17 +288,21 @@
       <div class="col-lg-12">
         <nav class="navbar navbar-expand-lg" style="padding-top: 15px; padding-bottom: 15px;">
           <a class="navbar-brand" href="index.html">
-            <img src="assets/images/frenlogo_converted.svg" alt="Logo" />
+            <img src="assets/images/frenlogo2_converted.svg" alt="Logo" />
           </a>
-
-          <!-- Directly visible menu (no toggle/collapse) -->
-          <ul class="navbar-nav ms-auto text-center w-100 mobile-nav">
-            <li class="nav-item"><a class="nav-link ud-menu-scroll" href="#home">Domov</a></li>
-            <li class="nav-item"><a class="nav-link ud-menu-scroll" href="#služby">Služby</a></li>
-            <li class="nav-item"><a class="nav-link ud-menu-scroll" href="#about">O nás</a></li>
-            <li class="nav-item"><a class="nav-link ud-menu-scroll" href="#team">Tým</a></li>
-            <li class="nav-item"><a class="nav-link ud-menu-scroll" href="#contact">Kontakt</a></li>
-          </ul>
+          <!-- Burger button for mobile, aligned right -->
+          
+          
+          <!-- Responsive menu: horizontal on desktop, fullscreen on mobile -->
+          <div class="collapse navbar-collapse menu-bg" id="mainNavbar">
+            <ul class="navbar-nav ms-auto text-center w-100">
+              <li class="nav-item"><a class="nav-link ud-menu-scroll" href="#home">Domov</a></li>
+              <li class="nav-item"><a class="nav-link ud-menu-scroll" href="#služby">Služby</a></li>
+              <li class="nav-item"><a class="nav-link ud-menu-scroll" href="#about">O nás</a></li>
+              <li class="nav-item"><a class="nav-link ud-menu-scroll" href="#team">Tým</a></li>
+              <li class="nav-item"><a class="nav-link ud-menu-scroll" href="#contact">Kontakt</a></li>
+            </ul>
+          </div>
         </nav>
       </div>
     </div>
@@ -204,35 +315,36 @@
 
 
     <!-- ====== Hero Start ====== -->
-    <section class="ud-hero" id="home">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-12" style="padding-bottom: 15px;">
-            <div class="ud-hero-content wow fadeInUp" data-wow-delay=".2s" style="animation-duration: 2.5s;">
-              <h1 class="ud-hero-title">
-                VŠE, CO POTŘEBUJETE — OD NÁPADU PO REALIZACI
-              </h1>
-              <p class="ud-hero-desc">
-               Navrhujeme, tvoříme a dodáváme digitální i fyzické produkty s důrazem na detail.
-              </p>
-            </div>
-            <div
-              class="ud-hero-brands-wrapper wow fadeInUp"
-              data-wow-delay=".3s"
-            >
-            </div>
-            <div class="ud-hero-image wow fadeInUp" data-wow-delay=".25s" style="animation-duration: 1.3s;">
-              <img src="assets/images/hero/foto_uvod.jpeg" alt="hero-image" class="uvod-img"/>
-             
-            </div>
-          </div>
-        </div>
+<section class="ud-hero" id="home">
+  <div class="container">
+    <div class="row align-items-center">
+      
+      <!-- Text -->
+      <div class="col-lg-6 col-md-12 wow fadeInUp" data-wow-delay=".2s" style="animation-duration: 2.5s;">
+        <h1 class="ud-hero-title122">
+          VŠE, CO POTŘEBUJETE
+        </h1>
+        <h1 class="ud-hero-title1">
+          OD NÁPADU PO REALIZACI
+        </h1>
+        <p class="ud-hero-desc1">
+          Navrhujeme, tvoříme a dodáváme digitální i fyzické produkty s důrazem na detail.
+        </p>
       </div>
-    </section>
-    <!-- ====== Hero konec ====== -->
+
+      <!-- Image -->
+      <div class="col-lg-6 col-md-12 wow fadeInUp" data-wow-delay=".3s" style="animation-duration: 1.3s;">
+        <img src="assets/images/hero/foto_uvod.jpeg" alt="hero-image" class="uvod-img"/>
+      </div>
+
+    </div>
+  </div>
+</section>
+<!-- ====== Hero End ====== -->
+
 
    <!-- ====== Služby Start ====== -->
-<section id="služby" class="ud-služby" style="padding: 80px 0;">
+<section id="služby" class="ud-služby wow fadeInUp style="padding: 80px 0;">
   <div class="container">
     <div class="row">
       <div class="col-lg-12">
@@ -254,25 +366,25 @@
           <div class="mb-3">
             <i class="bi bi-code-slash fs-1"></i>
           </div>
-          <h3>Tvorba webu</h3>
-          <p>Moderní web na míru, responzivní design, nastavení technických prvků SEO.</p>
+          <h3>Tvorba/Správa webu</h3>
+          <p>Moderní web na míru, responzivní design.</p>
           <p class="fw-bold">od 6000 do 11000 Kč</p>
           <a class="kontakt-btn" onclick="showContactPopup('kontakt@frentech.org', '+420 792 313 185')">Kontakt</a>
         </div>
         </div>
       </div>
 
-      <!-- Správa webu -->
+     
       <div class="col-xl-3 col-lg-3 col-sm-6 mb-4">
         <div class="ud-single-team wow fadeInUp" data-wow-delay=".1s" style="animation-duration: 1.5s;">
         <div class="card-custom h-100">
           <div class="mb-3">
-            <i class="bi bi-gear fs-1"></i>
+            <i class="bi bi-screwdriver fs-1"></i>
           </div>
-          <h3>Správa webu</h3>
-          <p>Pravidelná aktualizace obsahu. Doména, spolehlivý hosting a technická podpora 24/7.</p>
-          <p class="fw-bold">od 4000 Kč / rok</p>
-          <a class="kontakt-btn" onclick="showContactPopup('kontakt@frentech.org', '+420 792 313 185')">Kontakt</a>
+          <h3>Opravy mobilů, tabletů, počítačů</h3>
+          <p>Diagnostika závad, výměna displejů, baterií a opravy hardwaru i softwaru.</p>
+          <p class="fw-bold"></p>
+          <a class="kontakt-btn" onclick="showContactPopup('kontakt@frentech.org', '+420 704 515 495')">Kontakt</a>
         </div>
         </div>
       </div>
@@ -284,8 +396,8 @@
           <div class="mb-3">
             <i class="bi bi-printer fs-1"></i>
           </div>
-          <h3>3D Tisk</h3>
-          <p>Zakázkový 3D tisk a modelování na míru z PLA, PETG, ASA a PC a dalších materialů.</p>
+          <h3>3D Tisk, modelování</h3>
+          <p>Zakázkový 3D tisk na míru z ASA a PC a dalších materialů.</p>
           <p class="fw-bold">od 2 Kč / gram</p>
           <a class="kontakt-btn" onclick="showContactPopup('kontakt@frentech.org', '+420 730 652 556')">Kontakt</a>
         </div>
@@ -300,7 +412,7 @@
             <i class="bi bi-palette fs-1"></i>
           </div>
           <h3>Grafický design</h3>
-          <p>Střih videí, tvorba firemních log, vizitek, bannerů a dalšího vizuálního obsahu.</p>
+          <p>Střih videí, tvorba firemních log, vizitek, bannerů a dalšího audiovizuálního obsahu.</p>
           <p class="fw-bold">od 2000 Kč</p>
           <a class="kontakt-btn" onclick="showContactPopup('kontakt@frentech.org', '+420 725 932 874')">Kontakt</a>
         </div>
@@ -632,44 +744,40 @@
 
 
 
-    <!-- ====== Závěr start ====== -->
-    <footer class="ud-footer wow fadeInUp" data-wow-delay=".15s" style="animation-duration: 1s;">
-      <div class="ud-footer-widgets">
-        <div class="container">
-          <div class="row">
-            <div class="col-xl-dolu col-lg-4 col-md-6">
-              <div class="ud-widget">
-                <a href="index.html" class="ud-footer-logo">
-                  <img src="assets/images/frenlogo_converted.svg" alt="logo" />
-                </a>
-                <p class="ud-widget-desc" style="margin-left: 14px;">
-                 3D tisk, weby a grafika – vše pod jednou střechou
-                </p>
-              </div>
-            </div>
-        <div class="ud-footer-bottom">
-        <div class="container">
-          <div class="row">
-            </div>
-            <div class="col-md-4">
-              <p style="margin-bottom: 25px;" class="ud-footer-bottom-left">
-                  Křižíkova 1258, Frenštát pod Radhoštěm, 744 01
-                  <br>
-                  IČ: 00601659 
-                  <br>
-                  DIČ: CZ00601659 <br>
-                  <hr style="opacity:0">
-                  2025, Všechna práva vyhrazena
+      <!-- ====== Závěr start ====== -->
+  <footer class="ud-footer" data-wow-delay=".15s" style="animation-duration: 1s;">
+    <div class="container">
+      <div class="row justify-content-start">
+        <div class="col-xl-8 col-lg-7">
+          <div class="ud-footer-widgets">
+            <div class="ud-widget">
+              <a href="index.html" class="ud-footer-logo">
+                <img src="assets/images/frenlogo2_converted.svg" alt="logo" />
+              </a>
+              <p class="ud-widget-desc">
+                3D tisk, weby a grafika – vše pod jednou střechou
               </p>
             </div>
           </div>
+          <div class="ud-footer-bottom">
+            <p class="ud-footer-bottom-left">
+              Křižíkova 1258, Frenštát pod Radhoštěm, 744 01
+              <br>
+              IČ: 00601659 
+              <br>
+              DIČ: CZ00601659 <br>
+              <hr style="opacity:0">
+              2025, Všechna práva vyhrazena
+            </p>
+          </div>
         </div>
       </div>
-    </footer>
-    <!-- ====== Závěr konec ====== -->
+    </div>
+  </footer>
+  <!-- ====== Závěr konec ====== -->
 
     <!-- ====== Zpátky nahoru start ====== -->
-    <a href="javascript:void(0)" class="back-to-top">
+    <a href="#home" class="back-to-top">
       <i class="lni lni-chevron-up"> </i>
     </a>
     <!-- ====== Zpátky nahoru konec ====== -->
@@ -758,6 +866,21 @@
   <!-- Then load Lightbox -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
 
+  <script>
+document.addEventListener("DOMContentLoaded", function() {
+  document.querySelectorAll('.menu-bg .nav-link').forEach(link => {
+    link.addEventListener('click', function() {
+      if (window.innerWidth < 992) {
+        const navbarCollapse = document.getElementById('mainNavbar');
+        const bsCollapse = bootstrap.Collapse.getOrCreateInstance(navbarCollapse);
+        bsCollapse.hide();
+      }
+    });
+  });
+});
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+
   </body>
 </html>
-}
