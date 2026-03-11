@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap');
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--background_darker: #732a2a; --ink:#0e0c0b;--bone:#f5f0ea;--cream:#faf7f3;--rust:#b44546;--rust-dark:#8a2f30;--rust-light:#e8706f;--slate:#151a28;--mist:#9ea8b4;--gold:#c9a96e;--font-display:'Playfair Display',Georgia,serif;--font-body:'DM Sans',sans-serif}
+:root{--background_darker: #732a2a; --ink:#0e0c0b;--bone:#f5f0ea;--cream:#faf7f3;--rust:#b44546;--rust-dark:#8a2f30;--rust-light:#e8706f;--slate:#444b5c;--mist:#9ea8b4;--gold:#c9a96e;--font-display:'Playfair Display',Georgia,serif;--font-body:'DM Sans',sans-serif}
 html{scroll-behavior:smooth}
 body{font-family:var(--font-body);background:var(--cream);color:var(--ink);overflow-x:hidden;cursor:none}
 .cursor{width:10px;height:10px;background:var(--rust);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:transform .1s ease}
