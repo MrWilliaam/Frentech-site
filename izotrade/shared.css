@@ -133,6 +133,9 @@ footer{background:var(--white);padding:80px 8vw 40px;color:white}
 .footer-bottom{display:flex;align-items:center;justify-content:space-between}
 .footer-copy{font-size:.82rem;color:rgba(0, 0, 0, 0.3)}
 .footer-copy span{color:var(--rust-light)}
+.footer-address {color:rgba(0, 0, 0, 0.6);font-size:.88rem;}
+.footer-telefon {font-size:0.78rem;color:rgba(0, 0, 0, 0.3);text-transform:uppercase;letter-spacing:0.08em;}
+.footer-email {font-size:.75rem;color:rgba(0, 0, 0, 0.3);text-transform:uppercase;letter-spacing:.08em;}
 /* REVEAL */
 .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease}
 .reveal.visible{opacity:1;transform:translateY(0)}
