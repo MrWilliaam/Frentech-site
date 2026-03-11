@@ -1,0 +1,1384 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IZOtrade s.r.o. – Zateplení, fasády a rekonstrukce</title>
+<meta name="description" content="Stavební firma z Tiché. Provádíme zateplení domů, fasády, rekonstrukce i další stavební práce. Kontaktujte nás pro nezávaznou nabídku!">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #0e0c0b;
+    --bone: #f5f0ea;
+    --cream: #faf7f3;
+    --rust: #b44546;
+    --rust-dark: #8a2f30;
+    --rust-light: #e8706f;
+    --slate: #2c3240;
+    --mist: #9ea8b4;
+    --warm-white: #ffffff;
+    --gold: #c9a96e;
+    --font-display: 'Playfair Display', Georgia, serif;
+    --font-body: 'DM Sans', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font-body);
+    background: var(--cream);
+    color: var(--ink);
+    overflow-x: hidden;
+    cursor: none;
+  }
+
+  /* CUSTOM CURSOR */
+  .cursor {
+    width: 10px; height: 10px;
+    background: var(--rust);
+    border-radius: 50%;
+    position: fixed; top: 0; left: 0;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: transform 0.1s ease;
+  }
+  .cursor-ring {
+    width: 36px; height: 36px;
+    border: 1.5px solid var(--rust);
+    border-radius: 50%;
+    position: fixed; top: 0; left: 0;
+    pointer-events: none;
+    z-index: 9998;
+    transform: translate(-50%, -50%);
+    transition: all 0.18s cubic-bezier(.17,.67,.83,.67);
+    opacity: 0.6;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 0 5vw;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 72px;
+    background: rgba(250, 247, 243, 0.92);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(14,12,11,0.08);
+    transition: all 0.3s ease;
+  }
+  nav.scrolled {
+    height: 60px;
+    box-shadow: 0 4px 30px rgba(14,12,11,0.06);
+  }
+  .nav-logo {
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    font-weight: 900;
+    color: var(--ink);
+    text-decoration: none;
+    letter-spacing: -0.02em;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .nav-logo span { color: var(--rust); }
+  .nav-logo-badge {
+    width: 8px; height: 8px;
+    background: var(--rust);
+    border-radius: 50%;
+    display: inline-block;
+    animation: pulse-dot 2s infinite;
+  }
+  @keyframes pulse-dot {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(1.4); }
+  }
+  .nav-links {
+    display: flex; align-items: center; gap: 36px;
+    list-style: none;
+  }
+  .nav-links a {
+    text-decoration: none; color: var(--slate);
+    font-size: 0.875rem; font-weight: 500;
+    letter-spacing: 0.02em;
+    position: relative;
+    transition: color 0.2s;
+  }
+  .nav-links a::after {
+    content: '';
+    position: absolute; bottom: -3px; left: 0; right: 100%;
+    height: 1.5px; background: var(--rust);
+    transition: right 0.3s cubic-bezier(.4,0,.2,1);
+  }
+  .nav-links a:hover { color: var(--rust); }
+  .nav-links a:hover::after { right: 0; }
+  .nav-cta {
+    background: var(--rust);
+    color: white !important;
+    padding: 10px 22px;
+    border-radius: 2px;
+    font-weight: 600 !important;
+    font-size: 0.85rem !important;
+    letter-spacing: 0.06em !important;
+    text-transform: uppercase;
+    transition: background 0.2s, transform 0.2s !important;
+  }
+  .nav-cta::after { display: none !important; }
+  .nav-cta:hover { background: var(--rust-dark) !important; transform: translateY(-1px) !important; }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-left {
+    background: var(--slate);
+    display: flex; flex-direction: column;
+    justify-content: center;
+    padding: 140px 8vw 80px 8vw;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-left::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.025'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+  .hero-eyebrow {
+    display: flex; align-items: center; gap: 12px;
+    margin-bottom: 28px;
+    opacity: 0;
+    animation: fadeSlideUp 0.8s 0.2s forwards;
+  }
+  .hero-eyebrow-line {
+    width: 40px; height: 1px; background: var(--rust-light);
+  }
+  .hero-eyebrow span {
+    font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--rust-light); font-weight: 600;
+  }
+  .hero-title {
+    font-family: var(--font-display);
+    font-size: clamp(2.8rem, 5vw, 5rem);
+    font-weight: 900;
+    color: white;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin-bottom: 28px;
+    opacity: 0;
+    animation: fadeSlideUp 0.8s 0.35s forwards;
+  }
+  .hero-title em {
+    font-style: normal;
+    color: var(--rust-light);
+    position: relative;
+    display: inline-block;
+  }
+  .hero-title em::after {
+    content: '';
+    position: absolute; left: 0; bottom: 4px; right: 0;
+    height: 3px; background: var(--rust);
+    transform: scaleX(0); transform-origin: left;
+    animation: lineReveal 0.6s 1.2s forwards;
+  }
+  @keyframes lineReveal { to { transform: scaleX(1); } }
+  .hero-desc {
+    font-size: 1rem; line-height: 1.75;
+    color: rgba(255,255,255,0.65);
+    max-width: 420px;
+    margin-bottom: 44px;
+    opacity: 0;
+    animation: fadeSlideUp 0.8s 0.5s forwards;
+  }
+  .hero-actions {
+    display: flex; align-items: center; gap: 20px;
+    flex-wrap: wrap;
+    opacity: 0;
+    animation: fadeSlideUp 0.8s 0.65s forwards;
+  }
+  @keyframes fadeSlideUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .btn-primary {
+    background: var(--rust);
+    color: white;
+    padding: 15px 34px;
+    border: none; border-radius: 2px;
+    font-family: var(--font-body);
+    font-size: 0.875rem; font-weight: 600;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    text-decoration: none;
+    cursor: none;
+    display: inline-flex; align-items: center; gap: 10px;
+    transition: all 0.25s;
+    position: relative; overflow: hidden;
+  }
+  .btn-primary::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: white;
+    transform: translateX(-105%);
+    opacity: 0.15;
+    transition: transform 0.4s cubic-bezier(.4,0,.2,1);
+  }
+  .btn-primary:hover { background: var(--rust-dark); transform: translateY(-2px); box-shadow: 0 12px 30px rgba(180,69,70,0.4); }
+  .btn-primary:hover::before { transform: translateX(105%); }
+  .btn-ghost {
+    color: rgba(255,255,255,0.7);
+    padding: 15px 0;
+    border: none; background: none;
+    font-family: var(--font-body);
+    font-size: 0.875rem; font-weight: 500;
+    text-decoration: none; cursor: none;
+    display: inline-flex; align-items: center; gap: 8px;
+    transition: color 0.2s;
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+  }
+  .btn-ghost:hover { color: white; border-color: rgba(255,255,255,0.5); }
+
+  .hero-stats {
+    display: flex; gap: 40px;
+    margin-top: 64px;
+    padding-top: 40px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    opacity: 0;
+    animation: fadeSlideUp 0.8s 0.85s forwards;
+  }
+  .stat-item {}
+  .stat-num {
+    font-family: var(--font-display);
+    font-size: 2.2rem; font-weight: 900;
+    color: white; line-height: 1;
+    margin-bottom: 4px;
+  }
+  .stat-num span { color: var(--rust-light); }
+  .stat-label { font-size: 0.78rem; color: rgba(255,255,255,0.45); letter-spacing: 0.06em; text-transform: uppercase; }
+
+  .hero-right {
+    position: relative;
+    overflow: hidden;
+    background: var(--bone);
+  }
+  .hero-right-img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+    transform: scale(1.05);
+    animation: imgReveal 1.4s 0.1s cubic-bezier(.4,0,.2,1) forwards;
+  }
+  @keyframes imgReveal {
+    from { transform: scale(1.15); opacity: 0.6; }
+    to { transform: scale(1); opacity: 1; }
+  }
+  .hero-right-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(44,50,64,0.15) 0%, transparent 60%);
+  }
+  .hero-right-tag {
+    position: absolute; bottom: 40px; left: 40px;
+    background: white;
+    padding: 16px 22px;
+    border-radius: 2px;
+    box-shadow: 0 20px 60px rgba(14,12,11,0.15);
+    display: flex; align-items: center; gap: 14px;
+    animation: fadeSlideUp 0.8s 1s forwards;
+    opacity: 0;
+  }
+  .hero-right-tag-icon {
+    width: 42px; height: 42px;
+    background: var(--rust);
+    border-radius: 2px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .hero-right-tag-icon svg { width: 20px; height: 20px; fill: white; }
+  .hero-right-tag-text strong { display: block; font-size: 0.9rem; font-weight: 700; color: var(--ink); }
+  .hero-right-tag-text span { font-size: 0.78rem; color: var(--mist); }
+
+  /* SCROLLING TICKER */
+  .ticker-wrap {
+    background: var(--rust);
+    padding: 14px 0;
+    overflow: hidden;
+    display: flex;
+  }
+  .ticker-track {
+    display: flex; align-items: center;
+    white-space: nowrap;
+    animation: ticker 30s linear infinite;
+  }
+  .ticker-item {
+    display: inline-flex; align-items: center; gap: 18px;
+    padding: 0 36px;
+    font-size: 0.82rem; letter-spacing: 0.14em; text-transform: uppercase;
+    color: rgba(255,255,255,0.9); font-weight: 600;
+  }
+  .ticker-dot { width: 4px; height: 4px; background: rgba(255,255,255,0.4); border-radius: 50%; flex-shrink: 0; }
+  @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+  /* SERVICES */
+  .services {
+    padding: 120px 8vw;
+    background: var(--cream);
+  }
+  .section-header {
+    display: flex; align-items: flex-end; justify-content: space-between;
+    margin-bottom: 72px;
+    gap: 40px;
+  }
+  .section-label {
+    display: flex; align-items: center; gap: 12px;
+    margin-bottom: 16px;
+  }
+  .section-label-line { width: 32px; height: 1.5px; background: var(--rust); }
+  .section-label span {
+    font-size: 0.75rem; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--rust); font-weight: 700;
+  }
+  .section-title {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 3.5vw, 3.2rem);
+    font-weight: 900; color: var(--ink);
+    letter-spacing: -0.02em; line-height: 1.1;
+  }
+  .section-desc {
+    font-size: 1rem; color: var(--mist); line-height: 1.75;
+    max-width: 380px; text-align: right;
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2px;
+  }
+  .service-card {
+    position: relative;
+    background: var(--slate);
+    padding: 44px 36px;
+    overflow: hidden;
+    cursor: none;
+    transition: all 0.4s cubic-bezier(.4,0,.2,1);
+  }
+  .service-card:nth-child(2) { background: #212840; }
+  .service-card:nth-child(3) { background: #1a1f2e; }
+  .service-card:nth-child(4) { background: #151a28; }
+  .service-card::before {
+    content: '';
+    position: absolute; bottom: 0; left: 0; right: 0;
+    height: 3px; background: var(--rust);
+    transform: scaleX(0); transform-origin: left;
+    transition: transform 0.4s cubic-bezier(.4,0,.2,1);
+  }
+  .service-card:hover::before { transform: scaleX(1); }
+  .service-card:hover { transform: translateY(-8px); box-shadow: 0 30px 60px rgba(14,12,11,0.25); }
+  .service-num {
+    font-family: var(--font-display);
+    font-size: 4rem; font-weight: 900;
+    color: rgba(255,255,255,0.06);
+    line-height: 1;
+    margin-bottom: 28px;
+    position: absolute; top: 20px; right: 24px;
+    transition: color 0.4s;
+  }
+  .service-card:hover .service-num { color: rgba(180,69,70,0.15); }
+  .service-icon {
+    width: 48px; height: 48px;
+    background: rgba(180,69,70,0.15);
+    border-radius: 2px;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 24px;
+    transition: background 0.3s;
+  }
+  .service-card:hover .service-icon { background: var(--rust); }
+  .service-icon svg { width: 22px; height: 22px; fill: var(--rust-light); transition: fill 0.3s; }
+  .service-card:hover .service-icon svg { fill: white; }
+  .service-card h3 {
+    font-family: var(--font-display);
+    font-size: 1.25rem; font-weight: 700;
+    color: white; line-height: 1.3;
+    margin-bottom: 14px;
+  }
+  .service-card p { font-size: 0.875rem; color: rgba(255,255,255,0.5); line-height: 1.75; }
+  .service-link {
+    display: inline-flex; align-items: center; gap: 8px;
+    margin-top: 28px;
+    font-size: 0.82rem; font-weight: 600;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--rust-light);
+    text-decoration: none;
+    transition: gap 0.2s, color 0.2s;
+  }
+  .service-link:hover { gap: 14px; color: white; }
+  .service-link-arrow { font-size: 1rem; }
+
+  /* WHY US */
+  .why-us {
+    padding: 120px 8vw;
+    background: var(--bone);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 100px;
+    align-items: center;
+  }
+  .why-image-wrap {
+    position: relative;
+  }
+  .why-image {
+    width: 100%; aspect-ratio: 4/5;
+    object-fit: cover;
+    display: block;
+    border-radius: 2px;
+  }
+  .why-image-frame {
+    position: absolute;
+    top: -24px; right: -24px;
+    width: 70%; height: 55%;
+    border: 2px solid var(--rust);
+    border-radius: 2px;
+    z-index: -1;
+  }
+  .why-badge {
+    position: absolute; bottom: -20px; right: -20px;
+    background: var(--rust);
+    color: white;
+    width: 130px; height: 130px;
+    border-radius: 50%;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    box-shadow: 0 20px 50px rgba(180,69,70,0.5);
+  }
+  .why-badge-num {
+    font-family: var(--font-display);
+    font-size: 2.4rem; font-weight: 900; line-height: 1;
+  }
+  .why-badge-label { font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.85; }
+
+  .why-features { margin-top: 48px; display: flex; flex-direction: column; gap: 0; }
+  .why-feature {
+    padding: 28px 0;
+    border-bottom: 1px solid rgba(14,12,11,0.08);
+    display: flex; align-items: flex-start; gap: 24px;
+    cursor: none;
+    transition: padding-left 0.3s;
+  }
+  .why-feature:first-child { border-top: 1px solid rgba(14,12,11,0.08); }
+  .why-feature:hover { padding-left: 12px; }
+  .why-feature-icon {
+    width: 44px; height: 44px; flex-shrink: 0;
+    background: white;
+    border: 1px solid rgba(14,12,11,0.08);
+    border-radius: 2px;
+    display: flex; align-items: center; justify-content: center;
+    transition: background 0.3s, border-color 0.3s;
+  }
+  .why-feature:hover .why-feature-icon { background: var(--rust); border-color: var(--rust); }
+  .why-feature-icon svg { width: 18px; height: 18px; fill: var(--rust); transition: fill 0.3s; }
+  .why-feature:hover .why-feature-icon svg { fill: white; }
+  .why-feature h4 { font-size: 1rem; font-weight: 700; margin-bottom: 4px; color: var(--ink); }
+  .why-feature p { font-size: 0.875rem; color: var(--mist); line-height: 1.65; }
+
+  /* PROCESS */
+  .process {
+    padding: 120px 8vw;
+    background: var(--cream);
+  }
+  .process-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    margin-top: 72px;
+    position: relative;
+  }
+  .process-grid::before {
+    content: '';
+    position: absolute;
+    top: 40px; left: calc(12.5% + 20px); right: calc(12.5% + 20px);
+    height: 1px; background: linear-gradient(90deg, var(--rust), rgba(180,69,70,0.2));
+  }
+  .process-step {
+    padding: 0 28px;
+    text-align: center;
+    position: relative;
+  }
+  .process-step:not(:last-child)::after {
+    content: '→';
+    position: absolute; top: 22px; right: -12px;
+    color: var(--rust); font-size: 1rem;
+    opacity: 0.4;
+  }
+  .process-num-wrap {
+    width: 80px; height: 80px;
+    background: white;
+    border: 2px solid var(--bone);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 32px;
+    position: relative;
+    box-shadow: 0 10px 40px rgba(14,12,11,0.08);
+    transition: all 0.3s;
+    cursor: none;
+  }
+  .process-step:hover .process-num-wrap {
+    background: var(--rust); border-color: var(--rust);
+    box-shadow: 0 20px 50px rgba(180,69,70,0.35);
+    transform: translateY(-6px);
+  }
+  .process-num {
+    font-family: var(--font-display);
+    font-size: 1.6rem; font-weight: 900;
+    color: var(--rust); line-height: 1;
+    transition: color 0.3s;
+  }
+  .process-step:hover .process-num { color: white; }
+  .process-step h4 {
+    font-family: var(--font-display);
+    font-size: 1.1rem; font-weight: 700; color: var(--ink);
+    margin-bottom: 12px;
+  }
+  .process-step p { font-size: 0.875rem; color: var(--mist); line-height: 1.7; }
+
+  /* TESTIMONIALS */
+  .testimonials {
+    padding: 120px 8vw;
+    background: var(--slate);
+    position: relative;
+    overflow: hidden;
+  }
+  .testimonials::before {
+    content: '"';
+    font-family: var(--font-display);
+    font-size: 40vw; font-weight: 900;
+    color: rgba(255,255,255,0.015);
+    position: absolute; top: -10%; right: -5%;
+    line-height: 1; pointer-events: none;
+  }
+  .testimonials .section-title { color: white; }
+  .testimonials .section-label span { color: var(--rust-light); }
+  .testimonials .section-label-line { background: var(--rust-light); }
+  .testimonials .section-desc { color: rgba(255,255,255,0.4); }
+
+  .reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    margin-top: 72px;
+  }
+  .review-card {
+    background: rgba(255,255,255,0.04);
+    padding: 40px;
+    border: 1px solid rgba(255,255,255,0.06);
+    transition: all 0.3s;
+    cursor: none;
+    position: relative;
+  }
+  .review-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 2px; background: var(--rust);
+    transform: scaleX(0); transform-origin: left;
+    transition: transform 0.4s;
+  }
+  .review-card:hover { background: rgba(255,255,255,0.07); transform: translateY(-4px); }
+  .review-card:hover::before { transform: scaleX(1); }
+  .review-stars {
+    display: flex; gap: 4px; margin-bottom: 20px;
+  }
+  .review-stars span { color: var(--gold); font-size: 0.9rem; }
+  .review-text {
+    font-size: 0.95rem; line-height: 1.8;
+    color: rgba(255,255,255,0.65);
+    margin-bottom: 28px;
+    font-style: italic;
+  }
+  .review-author {
+    display: flex; align-items: center; gap: 14px;
+  }
+  .review-avatar {
+    width: 42px; height: 42px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--rust), var(--rust-dark));
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-display); font-weight: 700;
+    color: white; font-size: 0.9rem;
+    flex-shrink: 0;
+  }
+  .review-name { font-size: 0.9rem; font-weight: 600; color: white; }
+
+  /* CONTACT */
+  .contact {
+    padding: 120px 8vw;
+    background: var(--cream);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 100px;
+    align-items: start;
+  }
+  .contact-info-block {
+    display: flex; align-items: flex-start; gap: 18px;
+    padding: 28px 0;
+    border-bottom: 1px solid rgba(14,12,11,0.08);
+  }
+  .contact-info-block:first-of-type { border-top: 1px solid rgba(14,12,11,0.08); }
+  .contact-info-icon {
+    width: 44px; height: 44px; flex-shrink: 0;
+    background: var(--rust);
+    border-radius: 2px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .contact-info-icon svg { width: 18px; height: 18px; fill: white; }
+  .contact-info-label { font-size: 0.75rem; color: var(--mist); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 4px; }
+  .contact-info-value { font-size: 1rem; font-weight: 600; color: var(--ink); }
+
+  .contact-map {
+    margin-top: 40px;
+    border-radius: 2px;
+    overflow: hidden;
+    height: 220px;
+    background: var(--bone);
+    border: 1px solid rgba(14,12,11,0.08);
+  }
+  .contact-map iframe { width: 100%; height: 100%; border: none; display: block; }
+
+  .contact-form-wrap {}
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .form-group {
+    margin-bottom: 16px;
+  }
+  .form-group label {
+    display: block;
+    font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--mist); font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .form-group input,
+  .form-group textarea {
+    width: 100%;
+    background: var(--bone);
+    border: 1.5px solid transparent;
+    border-radius: 2px;
+    padding: 14px 18px;
+    font-family: var(--font-body);
+    font-size: 0.95rem; color: var(--ink);
+    outline: none;
+    transition: border-color 0.2s, background 0.2s;
+    cursor: none;
+  }
+  .form-group input:focus,
+  .form-group textarea:focus {
+    border-color: var(--rust);
+    background: white;
+  }
+  .form-group textarea { min-height: 130px; resize: vertical; }
+  .form-submit {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-top: 8px;
+  }
+  .form-note { font-size: 0.8rem; color: var(--mist); }
+
+  /* FOOTER */
+  footer {
+    background: var(--ink);
+    padding: 80px 8vw 40px;
+    color: white;
+  }
+  .footer-top {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 60px;
+    padding-bottom: 60px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    margin-bottom: 40px;
+  }
+  .footer-logo {
+    font-family: var(--font-display);
+    font-size: 1.5rem; font-weight: 900;
+    color: white; text-decoration: none;
+    display: block; margin-bottom: 16px;
+  }
+  .footer-logo span { color: var(--rust-light); }
+  .footer-about { font-size: 0.875rem; color: rgba(255,255,255,0.4); line-height: 1.75; }
+  .footer-col-title {
+    font-size: 0.78rem; letter-spacing: 0.16em; text-transform: uppercase;
+    color: rgba(255,255,255,0.35); font-weight: 700;
+    margin-bottom: 24px;
+  }
+  .footer-links { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+  .footer-links a {
+    text-decoration: none; color: rgba(255,255,255,0.55);
+    font-size: 0.9rem; transition: color 0.2s;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .footer-links a:hover { color: white; }
+  .footer-links a::before { content: '→'; font-size: 0.75rem; color: var(--rust); }
+  .footer-bottom {
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .footer-copy { font-size: 0.82rem; color: rgba(255,255,255,0.3); }
+  .footer-copy span { color: var(--rust-light); }
+
+  /* MOBILE HAMBURGER */
+  .nav-hamburger {
+    display: none;
+    flex-direction: column; gap: 5px;
+    cursor: none;
+    padding: 8px;
+    background: none; border: none;
+  }
+  .nav-hamburger span {
+    display: block; width: 24px; height: 2px;
+    background: var(--ink); border-radius: 2px;
+    transition: all 0.3s;
+  }
+
+  /* INTERSECT ANIMATIONS */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+  .reveal-delay-4 { transition-delay: 0.4s; }
+
+  /* RESPONSIVE */
+  @media (max-width: 1100px) {
+    .services-grid { grid-template-columns: repeat(2, 1fr); }
+    .reviews-grid { grid-template-columns: repeat(2, 1fr); }
+    .footer-top { grid-template-columns: 1fr 1fr; gap: 40px; }
+    .process-grid { grid-template-columns: repeat(2, 1fr); gap: 48px; }
+    .process-grid::before { display: none; }
+    .process-step:not(:last-child)::after { display: none; }
+  }
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; }
+    .hero-right { height: 55vw; min-height: 300px; }
+    .hero-left { padding: 120px 6vw 60px; }
+    .why-us { grid-template-columns: 1fr; gap: 60px; }
+    .why-image-wrap { max-width: 500px; }
+    .contact { grid-template-columns: 1fr; gap: 60px; }
+    .section-header { flex-direction: column; align-items: flex-start; }
+    .section-desc { text-align: left; }
+    nav .nav-links { display: none; }
+    .nav-hamburger { display: flex; }
+    .services-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 640px) {
+    .services-grid { grid-template-columns: 1fr; }
+    .reviews-grid { grid-template-columns: 1fr; }
+    .footer-top { grid-template-columns: 1fr; }
+    .process-grid { grid-template-columns: 1fr; }
+    .hero-stats { gap: 28px; flex-wrap: wrap; }
+    .form-row { grid-template-columns: 1fr; }
+    body { cursor: auto; }
+    .cursor, .cursor-ring { display: none; }
+    * { cursor: auto !important; }
+  }
+
+  /* ── DROPDOWN ─────────────────────────────────────────────── */
+  .nav-links li { position: relative; }
+
+  /* Invisible hover bridge — covers the gap between link and menu */
+  .nav-dropdown::before {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: -12px; right: -12px;
+    height: 18px;
+    background: transparent;
+  }
+
+  .nav-dropdown-menu {
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+    position: absolute;
+    top: calc(100% + 14px);
+    left: 50%;
+    transform: translateX(-50%) translateY(-4px);
+    background: #fff;
+    border: 1px solid rgba(14,12,11,0.08);
+    border-radius: 3px;
+    min-width: 210px;
+    box-shadow: 0 20px 50px rgba(14,12,11,0.13);
+    padding: 8px 0;
+    z-index: 500;
+    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
+  }
+  .nav-dropdown:hover .nav-dropdown-menu {
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateX(-50%) translateY(0);
+  }
+  .nav-dropdown-menu a {
+    display: block;
+    padding: 11px 22px;
+    color: var(--slate);
+    font-size: 0.875rem;
+    font-weight: 500;
+    white-space: nowrap;
+    text-decoration: none;
+    border-left: 2px solid transparent;
+    transition: background 0.15s, color 0.15s, padding-left 0.18s, border-color 0.15s;
+  }
+  .nav-dropdown-menu a::after { display: none !important; }
+  .nav-dropdown-menu a:hover {
+    background: var(--bone);
+    color: var(--rust);
+    padding-left: 28px;
+    border-left-color: var(--rust);
+  }
+  /* tiny caret on dropdown trigger */
+  .nav-dropdown > a::after {
+    content: '';
+    display: inline-block;
+    width: 0; height: 0;
+    border-left: 3px solid transparent;
+    border-right: 3px solid transparent;
+    border-top: 4px solid currentColor;
+    margin-left: 5px;
+    vertical-align: middle;
+    opacity: 0.45;
+    transition: transform 0.2s, opacity 0.2s;
+    position: static; background: none; height: 0;
+  }
+  .nav-dropdown:hover > a::after {
+    transform: rotate(180deg);
+    opacity: 0.9;
+  }
+  /* override the underline ::after on regular nav links — only for dropdown triggers */
+  .nav-dropdown > a { position: relative; }
+
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- NAV -->
+<nav id="mainNav">
+  <a class="nav-logo" href="index.html">
+    <div class="nav-logo-badge"></div>
+    IZO<span>trade</span>
+  </a>
+  <ul class="nav-links">
+    <li class="nav-dropdown">
+      <a href="zelena-usporam.html">Zelená úsporám</a>
+      <div class="nav-dropdown-menu">
+        <a href="rodinne-domy.html">Rodinné domy</a>
+        <a href="bytove-domy.html">Bytové domy</a>
+      </div>
+    </li>
+    <li class="nav-dropdown">
+      <a href="#sluzby">Naše služby</a>
+      <div class="nav-dropdown-menu">
+        <a href="stavby-domu.html">Stavby domů</a>
+        <a href="rekonstrukce.html">Rekonstrukce</a>
+        <a href="zatepleni-budov.html">Zateplení budov</a>
+        <a href="pronajem-plosiny.html">Pronájem plošiny</a>
+      </div>
+    </li>
+    <li><a href="reference.html">Reference</a></li>
+    <li><a href="#kontakt">Kontakt</a></li>
+    <li><a href="kontakty.html" class="nav-cta">+420 603 103 332</a></li>
+  </ul>
+  <button class="nav-hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow">
+      <div class="hero-eyebrow-line"></div>
+      <span>Stavební firma od roku 1999</span>
+    </div>
+    <h1 class="hero-title">
+      Stavíme<br>s <em>precizností</em><br>a vášní
+    </h1>
+    <p class="hero-desc">
+      Komplexní realizace staveb, zateplení budov a rekonstrukce s individuálním přístupem a férovými cenami. Vaše stavba v dobrých rukou.
+    </p>
+    <div class="hero-actions">
+      <a href="#kontakt" class="btn-primary">
+        Nezávazná poptávka
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <a href="#sluzby" class="btn-ghost">
+        Naše služby ↓
+      </a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-item">
+        <div class="stat-num">25<span>+</span></div>
+        <div class="stat-label">Let zkušeností</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">500<span>+</span></div>
+        <div class="stat-label">Dokončených projektů</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">100<span>%</span></div>
+        <div class="stat-label">Spokojených klientů</div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <img class="hero-right-img"
+      src="https://izotrade.cz/wp-content/uploads/2025/02/obrazek-proc-nas.webp"
+      alt="Zateplení a rekonstrukce od IZOtrade"
+      onerror="this.src='https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=900&q=80'; this.onerror=null;">
+    <div class="hero-right-overlay"></div>
+    <div class="hero-right-tag">
+      <div class="hero-right-tag-icon">
+        <svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" fill="none" stroke="white" stroke-width="2"/></svg>
+      </div>
+      <div class="hero-right-tag-text">
+        <strong>Zelená úsporám</strong>
+        <span>Pomáháme se získáním dotací</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker-wrap">
+  <div class="ticker-track">
+    <span class="ticker-item"><span class="ticker-dot"></span>Zateplení domů</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Fasády & rekonstrukce</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Zelená úsporám</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Stavby domů</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Pronájem plošiny</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Projektová dokumentace</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Zateplení domů</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Fasády & rekonstrukce</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Zelená úsporám</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Stavby domů</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Pronájem plošiny</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Projektová dokumentace</span>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section class="services" id="sluzby">
+  <div class="section-header reveal">
+    <div>
+      <div class="section-label">
+        <div class="section-label-line"></div>
+        <span>Co nabízíme</span>
+      </div>
+      <h2 class="section-title">Naše<br>služby</h2>
+    </div>
+    <p class="section-desc">Od roku 1999 se specializujeme na kompletní realizaci staveb od plánování až po předání hotového projektu.</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card reveal">
+      <div class="service-num">01</div>
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      </div>
+      <h3>Nová zelená úsporám</h3>
+      <p>Kompletní servis při vyřízení dotací, od zpracování návrhu projektu po realizaci a čerpání dotace.</p>
+      <a href="#" class="service-link">Zjistit více <span class="service-link-arrow">→</span></a>
+    </div>
+    <div class="service-card reveal reveal-delay-1">
+      <div class="service-num">02</div>
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24"><path d="M4 14.899A7 7 0 1115.71 8h1.79a4.5 4.5 0 010 9H5a5 5 0 01-.1-10.1"/></svg>
+      </div>
+      <h3>Zateplení budov</h3>
+      <p>Zateplujeme a revitalizujeme rodinné i bytové domy a průmyslové stavby s důrazem na energetické úspory.</p>
+      <a href="#" class="service-link">Zjistit více <span class="service-link-arrow">→</span></a>
+    </div>
+    <div class="service-card reveal reveal-delay-2">
+      <div class="service-num">03</div>
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
+      </div>
+      <h3>Rekonstrukce</h3>
+      <p>Rekonstrukce interiérů, půdní vestavby a kompletní obnova budov přizpůsobené přesně vašim požadavkům.</p>
+      <a href="#" class="service-link">Zjistit více <span class="service-link-arrow">→</span></a>
+    </div>
+    <div class="service-card reveal reveal-delay-3">
+      <div class="service-num">04</div>
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+      </div>
+      <h3>Stavby domů</h3>
+      <p>Kompletní výstavba rodinných a bytových domů na klíč — od projektové dokumentace po finální předání.</p>
+      <a href="#" class="service-link">Zjistit více <span class="service-link-arrow">→</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="why-us" id="proc-my">
+  <div class="why-image-wrap reveal">
+    <img class="why-image"
+      src="https://izotrade.cz/wp-content/uploads/2025/02/obrazek-proc-nas.webp"
+      alt="Proč vybrat IZOtrade"
+      onerror="this.src='https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=800&q=80'; this.onerror=null;">
+    <div class="why-image-frame"></div>
+    <div class="why-badge">
+      <div class="why-badge-num">25+</div>
+      <div class="why-badge-label">let praxe</div>
+    </div>
+  </div>
+  <div class="reveal reveal-delay-2">
+    <div class="section-label">
+      <div class="section-label-line"></div>
+      <span>Proč nás vybrat</span>
+    </div>
+    <h2 class="section-title" style="margin-bottom:16px;">Váš spolehlivý<br>stavební partner</h2>
+    <p style="font-size:1rem;color:var(--mist);line-height:1.75;max-width:440px;margin-bottom:0;">Přinášíme více než dvě dekády odborných zkušeností a osobního přístupu ke každému projektu.</p>
+
+    <div class="why-features">
+      <div class="why-feature">
+        <div class="why-feature-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <div>
+          <h4>Dlouhodobé zkušenosti</h4>
+          <p>Více než 20 let spolehlivých a kvalitních služeb v oblasti zateplování, rekonstrukcí a stavebních prací.</p>
+        </div>
+      </div>
+      <div class="why-feature">
+        <div class="why-feature-icon">
+          <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+        </div>
+        <div>
+          <h4>Individuální přístup</h4>
+          <p>Ať jde o malou nebo velkou rekonstrukci, vždy přizpůsobíme služby přesně vašim potřebám a představám.</p>
+        </div>
+      </div>
+      <div class="why-feature">
+        <div class="why-feature-icon">
+          <svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+        </div>
+        <div>
+          <h4>Dotace a financování</h4>
+          <p>Pomáháme s vyřízením dotací z programu Zelená úsporám a zajišťujeme příznivé podmínky financování.</p>
+        </div>
+      </div>
+      <div class="why-feature">
+        <div class="why-feature-icon">
+          <svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+        </div>
+        <div>
+          <h4>Transparentnost</h4>
+          <p>Otevřená komunikace, férové ceny a jasné podmínky jsou základem naší dlouhodobé důvěry zákazníků.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process" id="proces">
+  <div class="section-header reveal">
+    <div>
+      <div class="section-label">
+        <div class="section-label-line"></div>
+        <span>Jak pracujeme</span>
+      </div>
+      <h2 class="section-title">Proces<br>spolupráce</h2>
+    </div>
+    <p class="section-desc">Jednoduchý a transparentní čtyřkrokový proces, který zaručuje hladký průběh každého projektu.</p>
+  </div>
+  <div class="process-grid">
+    <div class="process-step reveal">
+      <div class="process-num-wrap">
+        <div class="process-num">01</div>
+      </div>
+      <h4>Úvodní konzultace</h4>
+      <p>Projdeme vaše představy, vysvětlíme možnosti řešení a připravíme plán dalšího postupu.</p>
+    </div>
+    <div class="process-step reveal reveal-delay-1">
+      <div class="process-num-wrap">
+        <div class="process-num">02</div>
+      </div>
+      <h4>Návrh řešení</h4>
+      <p>Připravíme návrh, cenovou nabídku a časový harmonogram přesně dle vašich požadavků.</p>
+    </div>
+    <div class="process-step reveal reveal-delay-2">
+      <div class="process-num-wrap">
+        <div class="process-num">03</div>
+      </div>
+      <h4>Příprava projektu</h4>
+      <p>Zajistíme technickou dokumentaci, objednávku materiálů a naplánujeme realizaci.</p>
+    </div>
+    <div class="process-step reveal reveal-delay-3">
+      <div class="process-num-wrap">
+        <div class="process-num">04</div>
+      </div>
+      <h4>Realizace</h4>
+      <p>Projekt realizujeme s důrazem na kvalitu. Pravidelně vás informujeme o průběhu prací.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials" id="reference">
+  <div class="section-header reveal">
+    <div>
+      <div class="section-label">
+        <div class="section-label-line"></div>
+        <span>Hodnocení</span>
+      </div>
+      <h2 class="section-title" style="color:white;">Co říkají<br>naši zákazníci</h2>
+    </div>
+    <p class="section-desc">Pět spokojených zákazníků z mnoha stovek dokončených projektů po celém regionu.</p>
+  </div>
+  <div class="reviews-grid">
+    <div class="review-card reveal">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">„S firmou Stavby IZOtrade s.r.o. jsme byli velmi spokojeni. Vše probíhalo profesionálně, bez zbytečných průtahů. Fasáda vypadá skvěle a dům je teplejší. Doporučujeme."</p>
+      <div class="review-author">
+        <div class="review-avatar">M</div>
+        <div class="review-name">Pan Mičulek</div>
+      </div>
+    </div>
+    <div class="review-card reveal reveal-delay-1">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">„Oceňuji precizní práci týmu IZOtrade. Zateplení proběhlo s důrazem na zachování historického vzhledu a přineslo výrazné úspory energií. Výsledek předčil očekávání!"</p>
+      <div class="review-author">
+        <div class="review-avatar">M</div>
+        <div class="review-name">Pan Mlčoch</div>
+      </div>
+    </div>
+    <div class="review-card reveal reveal-delay-2">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">„Spolupráce s firmou byla naprosto profesionální. Zateplení proběhlo hladce a výsledek předčil očekávání – úspora energií, vyšší komfort bydlení. Doporučuji!"</p>
+      <div class="review-author">
+        <div class="review-avatar">B</div>
+        <div class="review-name">Paní Bielská</div>
+      </div>
+    </div>
+    <div class="review-card reveal reveal-delay-1">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">„Lepší firmu jsme si vybrat nemohli. Maximální spokojenost s odborností prací, vše provedeno kvalitně a profesionálně. Skvělý kolektiv. Doporučujeme!"</p>
+      <div class="review-author">
+        <div class="review-avatar">V</div>
+        <div class="review-name">Pan Volný M.</div>
+      </div>
+    </div>
+    <div class="review-card reveal reveal-delay-2">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">„Velká spokojenost s provedením díla, bezproblémový průběh, dobrá komunikace. Doporučuji."</p>
+      <div class="review-author">
+        <div class="review-avatar">S</div>
+        <div class="review-name">Paní Mikesková S.</div>
+      </div>
+    </div>
+    <div class="review-card reveal reveal-delay-3" style="display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;background:rgba(180,69,70,0.12);border-color:rgba(180,69,70,0.25);">
+      <div style="font-family:var(--font-display);font-size:3.5rem;font-weight:900;color:var(--rust-light);line-height:1;">5.0</div>
+      <div class="review-stars" style="justify-content:center;margin:12px 0;">★★★★★</div>
+      <div style="font-size:0.85rem;color:rgba(255,255,255,0.45);">Průměrné hodnocení<br>od zákazníků</div>
+      <a href="#kontakt" class="btn-primary" style="margin-top:24px;font-size:0.78rem;padding:12px 22px;">Napsat nám</a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="kontakt">
+  <div class="reveal">
+    <div class="section-label">
+      <div class="section-label-line"></div>
+      <span>Spojte se s námi</span>
+    </div>
+    <h2 class="section-title" style="margin-bottom:16px;">Kontaktujte<br>nás</h2>
+    <p style="font-size:1rem;color:var(--mist);line-height:1.75;margin-bottom:44px;max-width:400px;">Nezávazně se poptejte. Rádi vám připravíme konkrétní nabídku na míru.</p>
+
+    <div class="contact-info-block">
+      <div class="contact-info-icon">
+        <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      </div>
+      <div>
+        <div class="contact-info-label">Adresa</div>
+        <div class="contact-info-value">Tichá 272, 742 74 Tichá</div>
+      </div>
+    </div>
+    <div class="contact-info-block">
+      <div class="contact-info-icon">
+        <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.69 14a19.79 19.79 0 01-3.07-8.67A2 2 0 013.61 3h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 10.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+      </div>
+      <div>
+        <div class="contact-info-label">Telefon</div>
+        <div class="contact-info-value">+420 603 103 332</div>
+      </div>
+    </div>
+    <div class="contact-info-block">
+      <div class="contact-info-icon">
+        <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      </div>
+      <div>
+        <div class="contact-info-label">E-mail</div>
+        <div class="contact-info-value"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="1a73747c755a7360756e687b7e7f347960">[email&#160;protected]</a></div>
+      </div>
+    </div>
+
+    <div class="contact-map">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2573.5!2d18.1532!3d49.6315!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sTich%C3%A1%20272%2C%20742%2074%20Tich%C3%A1!5e0!3m2!1scs!2scz!4v1"
+        loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
+  </div>
+
+  <div class="contact-form-wrap reveal reveal-delay-2">
+    <div class="form-row">
+      <div class="form-group">
+        <label>Jméno</label>
+        <input type="text" placeholder="Vaše jméno">
+      </div>
+      <div class="form-group">
+        <label>Příjmení</label>
+        <input type="text" placeholder="Vaše příjmení">
+      </div>
+    </div>
+    <div class="form-group">
+      <label>E-mailová adresa</label>
+      <input type="email" placeholder="email@priklad.cz">
+    </div>
+    <div class="form-group">
+      <label>Telefon</label>
+      <input type="tel" placeholder="+420 000 000 000">
+    </div>
+    <div class="form-group">
+      <label>Zpráva</label>
+      <textarea placeholder="Popište váš projekt nebo dotaz..."></textarea>
+    </div>
+    <div class="form-submit">
+      <span class="form-note">Odpovíme do 24 hodin</span>
+      <button class="btn-primary" type="submit" style="cursor:none;">
+        Odeslat zprávu
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M22 2L11 13M22 2L15 22l-4-9-9-4 20-7z"/></svg>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <a class="footer-logo" href="#">IZO<span>trade</span></a>
+      <p class="footer-about">Stavební firma z Tiché. Od roku 1999 provádíme zateplení domů, fasády, rekonstrukce i kompletní stavby. Váš spolehlivý partner pro každý projekt.</p>
+      <div style="margin-top:28px;display:flex;gap:16px;">
+        <div style="background:rgba(255,255,255,0.06);padding:8px 16px;border-radius:2px;font-size:0.78rem;color:rgba(255,255,255,0.4);">IČ: 02046768</div>
+        <div style="background:rgba(255,255,255,0.06);padding:8px 16px;border-radius:2px;font-size:0.78rem;color:rgba(255,255,255,0.4);">DIČ: CZ02046768</div>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Naše služby</div>
+      <ul class="footer-links">
+        <li><a href="#">Nová zelená úsporám</a></li>
+        <li><a href="#">Zateplení budov</a></li>
+        <li><a href="#">Rekonstrukce</a></li>
+        <li><a href="#">Stavby domů</a></li>
+        <li><a href="#">Pronájem plošiny</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Rychlé odkazy</div>
+      <ul class="footer-links">
+        <li><a href="#">Reference</a></li>
+        <li><a href="#">O nás</a></li>
+        <li><a href="#">Kontakty</a></li>
+        <li><a href="#">Podmínky použití</a></li>
+        <li><a href="#">Ochrana osobních údajů</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Kontakt</div>
+      <ul class="footer-links" style="gap:16px;">
+        <li style="display:flex;flex-direction:column;gap:2px;"><span style="font-size:0.78rem;color:rgba(255,255,255,0.3);text-transform:uppercase;letter-spacing:0.08em;">Adresa</span><span style="color:rgba(255,255,255,0.6);font-size:0.88rem;">Tichá 272, 742 74 Tichá</span></li>
+        <li style="display:flex;flex-direction:column;gap:2px;"><span style="font-size:0.78rem;color:rgba(255,255,255,0.3);text-transform:uppercase;letter-spacing:0.08em;">Telefon</span><a href="tel:+420603103332" style="color:white;font-size:0.95rem;font-weight:600;text-decoration:none;" class="">+420 603 103 332</a></li>
+        <li style="display:flex;flex-direction:column;gap:2px;"><span style="font-size:0.78rem;color:rgba(255,255,255,0.3);text-transform:uppercase;letter-spacing:0.08em;">E-mail</span><a href="/cdn-cgi/l/email-protection#3950575f56795043564d4b585d5c175a43" style="color:white;font-size:0.88rem;text-decoration:none;"><span class="__cf_email__" data-cfemail="21484f474e61485b4e55534045440f425b">[email&#160;protected]</span></a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2025 <span>Stavby IZOtrade s.r.o.</span> Všechna práva vyhrazena.</div>
+    <div style="font-size:0.78rem;color:rgba(255,255,255,0.2);">Tichá, Moravskoslezský kraj</div>
+  </div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  // Custom cursor
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursorRing');
+  let mx = 0, my = 0, rx = 0, ry = 0;
+  document.addEventListener('mousemove', e => {
+    mx = e.clientX; my = e.clientY;
+    cursor.style.left = mx + 'px'; cursor.style.top = my + 'px';
+  });
+  function animateRing() {
+    rx += (mx - rx) * 0.15;
+    ry += (my - ry) * 0.15;
+    ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
+    requestAnimationFrame(animateRing);
+  }
+  animateRing();
+  document.querySelectorAll('a, button, .service-card, .why-feature, .review-card, .process-step').forEach(el => {
+    el.addEventListener('mouseenter', () => { ring.style.transform = 'translate(-50%,-50%) scale(1.8)'; ring.style.opacity = '1'; cursor.style.transform = 'translate(-50%,-50%) scale(0.5)'; });
+    el.addEventListener('mouseleave', () => { ring.style.transform = 'translate(-50%,-50%) scale(1)'; ring.style.opacity = '0.6'; cursor.style.transform = 'translate(-50%,-50%) scale(1)'; });
+  });
+
+  // Sticky nav
+  window.addEventListener('scroll', () => {
+    document.getElementById('mainNav').classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  // Intersection reveal
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // Form submit
+  document.querySelector('button[type="submit"]')?.addEventListener('click', e => {
+    e.preventDefault();
+    const btn = e.currentTarget;
+    const orig = btn.innerHTML;
+    btn.innerHTML = '✓ Odesláno!';
+    btn.style.background = 'var(--rust-dark)';
+    btn.disabled = true;
+    setTimeout(() => {
+      btn.innerHTML = orig;
+      btn.style.background = '';
+      btn.disabled = false;
+    }, 3500);
+  });
+
+  // Hamburger mobile menu toggle
+  document.getElementById('hamburger')?.addEventListener('click', () => {
+    const links = document.querySelector('.nav-links');
+    links.style.display = links.style.display === 'flex' ? 'none' : 'flex';
+    links.style.flexDirection = 'column';
+    links.style.position = 'absolute';
+    links.style.top = '72px';
+    links.style.left = '0'; links.style.right = '0';
+    links.style.background = 'rgba(250,247,243,0.98)';
+    links.style.padding = '20px 5vw 28px';
+    links.style.gap = '6px';
+    links.style.borderBottom = '1px solid rgba(14,12,11,0.08)';
+    links.style.zIndex = '99';
+  });
+
+</script>
+</body>
+</html>
