@@ -120,18 +120,18 @@ nav.scrolled{height:60px;box-shadow:0 4px 30px rgba(14,12,11,.06)}
 .btn-white{background:white;color:var(--rust);padding:15px 34px;border:none;border-radius:2px;font-family:var(--font-body);font-size:.875rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;cursor:none;display:inline-flex;align-items:center;gap:10px;transition:all .25s}
 .btn-white:hover{background:var(--bone);transform:translateY(-2px);box-shadow:0 12px 30px rgba(14,12,11,.15)}
 /* FOOTER */
-footer{background:var(--ink);padding:80px 8vw 40px;color:white}
-.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:60px;padding-bottom:60px;border-bottom:1px solid rgba(255,255,255,.08);margin-bottom:40px}
+footer{background:var(--white);padding:80px 8vw 40px;color:white}
+.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:60px;padding-bottom:60px;border-bottom:1px solid rgba(0, 0, 0, 0.08);margin-bottom:40px}
 .footer-logo{font-family:var(--font-display);font-size:1.5rem;font-weight:900;color:white;text-decoration:none;display:block;margin-bottom:16px}
 .footer-logo span{color:var(--rust-light)}
-.footer-about{font-size:.875rem;color:rgba(255,255,255,.4);line-height:1.75}
-.footer-col-title{font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.35);font-weight:700;margin-bottom:24px}
+.footer-about{font-size:.875rem;color:rgba(0, 0, 0, 0.4);line-height:1.75}
+.footer-col-title{font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(0, 0, 0, 0.35);font-weight:700;margin-bottom:24px}
 .footer-links{list-style:none;display:flex;flex-direction:column;gap:12px}
-.footer-links a{text-decoration:none;color:rgba(255,255,255,.55);font-size:.9rem;transition:color .2s;display:flex;align-items:center;gap:8px}
-.footer-links a:hover{color:white}
+.footer-links a{text-decoration:none;color:rgba(0, 0, 0, 0.55);font-size:.9rem;transition:color .2s;display:flex;align-items:center;gap:8px}
+.footer-links a:hover{color:rgb(0, 0, 0)}
 .footer-links a::before{content:'→';font-size:.75rem;color:var(--rust)}
 .footer-bottom{display:flex;align-items:center;justify-content:space-between}
-.footer-copy{font-size:.82rem;color:rgba(255,255,255,.3)}
+.footer-copy{font-size:.82rem;color:rgba(0, 0, 0, 0.3)}
 .footer-copy span{color:var(--rust-light)}
 /* REVEAL */
 .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease}
