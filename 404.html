@@ -1,171 +1,167 @@
-<!-- =========
-========== -->
-
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Frentech</title>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>404 — Frentech</title>
+  <link rel="shortcut icon" href="assets/images/fren1.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 
-    <!--====== Favicon Ikona ======-->
-    <link
-      rel="shortcut icon"
-      href="assets/images/fren1.svg"
-      type="image/svg"
-    />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    <!-- ===== Všechny CSS soubory ===== -->
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="assets/css/animate.css" />
-    <link rel="stylesheet" href="assets/css/lineicons.css" />
-    <link rel="stylesheet" href="assets/css/ud-styles.css" />
-  </head>
-  <body>
-    <!-- ====== Header start ====== -->
-  <header class="ud-header">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-12">
-          <nav class="navbar navbar-expand-lg" style="padding-top: 15px; padding-bottom: 15px;">
-            <a class="navbar-brand" href="index.html">
-              <img src="assets/images/frenlogo_converted.svg" alt="Logo" />
-            </a>
+    :root {
+      --ink: #0d0d12;
+      --off: #f5f4f0;
+      --accent: #e8ff47;
+      --mid: #8a8a8a;
+      --font-display: 'Syne', sans-serif;
+      --font-body: 'DM Sans', sans-serif;
+    }
 
-            <!-- Directly visible menu (no toggle/collapse) -->
-            <ul class="navbar-nav ms-auto text-center w-100 mobile-nav">
-              <li class="nav-item"><a class="nav-link ud-menu-scroll" href="index.html">Domov</a></li>
-              <li class="nav-item"><a class="nav-link ud-menu-scroll" href="index.html">Služby</a></li>
-              <li class="nav-item"><a class="nav-link ud-menu-scroll" href="index.html">O nás</a></li>
-              <li class="nav-item"><a class="nav-link ud-menu-scroll" href="index.html">Tým</a></li>
-              <li class="nav-item"><a class="nav-link ud-menu-scroll" href="index.html">Kontakt</a></li>
-            </ul>
-          </nav>
-        </div>
-      </div>
-    </div>
-  </header>
-<!-- ====== Header konec ====== -->
+    body {
+      font-family: var(--font-body);
+      background: var(--ink);
+      color: var(--off);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
 
-    <!-- ====== Banner Start ====== -->
-    <section class="ud-page-banner">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-12">
-            <div class="ud-banner-content">
-              <h1>Chyba 404</h1>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- ====== Banner End ====== -->
+    /* NAV */
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 40px;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+    }
 
-    <!-- ====== Error 404 Start ====== -->
-    <section class="ud-404">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-12">
-            <div class="ud-404-wrapper">
-              <div class="ud-404-content">
-                <h2 class="ud-404-title">404 - Nepodařilo se nám najít tuhle stránku.</h2>
-                <ul class="ud-404-links">
-                  <li>
-                    <a href="index.html">Zkusit znova</a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- ====== Error 404 End ====== -->
+    nav img { height: 32px; filter: invert(1); }
 
-    <!-- ====== kontakt Start ====== -->
-<section id="contact" class="ud-contact" style="background-color: #E6E6FA;">
-  <div class="container" style="padding-top: 25px; padding-bottom: 25px;">
-    <div class="row align-items-start">
-      <div class="col-xl-8 col-lg-7">
-        <div class="ud-contact-content-wrapper" style="padding: 25px;">
-          <div class="ud-contact-title mb-4">
-            <span>Kontaktujte nás</span>
-            <h2>
-              Ozvěte se nám, <br />
-              Společně najdeme řešení.
-            </h2>
-          </div>
-          <div class="ud-contact-info-wrapper">
-            <div class="ud-single-info d-flex mb-4">
-              <div class="ud-info-icon me-3" style="font-size: 32px;">
-                <i class="lni lni-map-marker"></i>
-              </div>
-              <div class="ud-info-meta">
-                <h5>Kontakt</h5>
-                <p>Email: kontakt@frentech.org<br /> Tel.: 733 423 037</p>
-              </div>
-            </div>
-            <div class="ud-single-info d-flex">
-              <div class="ud-info-icon me-3" style="font-size: 32px;">
-                <i class="lni lni-envelope"></i>
-              </div>
-              <div class="ud-info-meta">
-                <h5>Sociální sítě</h5>
-                <p>Instagram:</p>
-                <p>Facebook:</p>
-              </div>
-            </div>
-          </div>
-        </div> <!-- end content box -->
-      </div>
-    </div>
-  </div>
-</section>
+    nav a.back-link {
+      font-family: var(--font-display);
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.5);
+      text-decoration: none;
+      letter-spacing: 0.04em;
+      transition: color 0.2s;
+    }
 
+    nav a.back-link:hover { color: var(--accent); }
 
+    /* MAIN */
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 60px 24px;
+    }
 
-<!-- ====== Kontakt konec ====== -->
+    .error-num {
+      font-family: var(--font-display);
+      font-size: clamp(8rem, 22vw, 18rem);
+      font-weight: 800;
+      line-height: 1;
+      letter-spacing: -0.05em;
+      color: transparent;
+      -webkit-text-stroke: 2px rgba(255,255,255,0.12);
+      user-select: none;
+      margin-bottom: -20px;
+    }
 
-    <!-- ====== Závěr start ====== -->
-    <footer class="ud-footer wow fadeInUp" data-wow-delay=".15s" style="animation-duration: 1s;">
-      <div class="ud-footer-widgets">
-        <div class="container">
-          <div class="row">
-            <div class="col-xl-3 col-lg-4 col-md-6">
-              <div class="ud-widget">
-                <a href="index.html" class="ud-footer-logo">
-                  <img src="assets/images/frenlogo_converted.svg" alt="logo" />
-                </a>
-                <p class="ud-widget-desc" style="width: 600px;" >
-                 3D tisk, weby a grafika – vše pod jednou střechou
-                </p>
-              </div>
-            </div>
-        <div class="ud-footer-bottom">
-        <div class="container">
-          <div class="row">
-            </div>
-            <div class="col-md-4">
-              <p class="ud-footer-bottom-left">
-                2025, Všechna práva vyhrazena
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </footer>
-      <!-- ====== Závěr konec ====== -->
+    .error-badge {
+      display: inline-block;
+      background: var(--accent);
+      color: var(--ink);
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 8px 20px;
+      border-radius: 100px;
+      margin-bottom: 28px;
+    }
 
-      <!-- ====== Spátky nahoru Start ====== -->
-    <a href="javascript:void(0)" class="back-to-top">
-      <i class="lni lni-chevron-up"> </i>
-    </a>
-      <!-- ====== Spátky nahoru konec ====== -->
+    h1 {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin-bottom: 16px;
+    }
 
-      <!-- ====== Všechny Javascript soubory ====== -->
-    <script src="assets/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/js/wow.min.js"></script>
-    <script src="assets/js/main.js"></script>
-  </body>
+    p {
+      font-size: 1rem;
+      color: rgba(255,255,255,0.45);
+      line-height: 1.7;
+      max-width: 400px;
+      margin-bottom: 44px;
+    }
+
+    .btn {
+      background: var(--accent);
+      color: var(--ink);
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 0.9rem;
+      letter-spacing: 0.02em;
+      padding: 16px 36px;
+      border-radius: 100px;
+      text-decoration: none;
+      border: 2px solid var(--accent);
+      transition: background 0.2s, color 0.2s, transform 0.2s;
+      display: inline-block;
+    }
+
+    .btn:hover {
+      background: transparent;
+      color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    /* FOOTER */
+    footer {
+      padding: 24px 40px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      text-align: center;
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.2);
+    }
+
+    @media (max-width: 600px) {
+      nav { padding: 16px 20px; }
+      footer { padding: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html">
+    <img src="assets/images/frenlogo2_converted.svg" alt="Frentech" />
+  </a>
+  <a href="index.html" class="back-link">← Zpět na hlavní stránku</a>
+</nav>
+
+<main>
+  <div class="error-num">404</div>
+  <div class="error-badge">Stránka nenalezena</div>
+  <h1>Tuhle stránku<br>jsme nenašli</h1>
+  <p>Stránka, kterou hledáte, neexistuje nebo byla přesunuta. Zkuste to znovu z hlavní stránky.</p>
+  <a href="index.html" class="btn">Zpět domů →</a>
+</main>
+
+<footer>
+  © 2026 Frentech — Všechna práva vyhrazena
+</footer>
+
+</body>
 </html>

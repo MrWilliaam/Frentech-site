@@ -1,786 +1,1030 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Frentech</title>
-<!-- Lightbox2 CSS -->
+<html lang="cs">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Frentech — Tvorba webů</title>
+  <meta name="description" content="Tvoříme moderní weby na míru. Rychle, spolehlivě a s důrazem na detail." />
+  <meta property="og:title" content="Frentech" />
+  <meta property="og:description" content="Tvoříme moderní weby na míru." />
+  <meta property="og:url" content="https://frentech.org/" />
+  <link rel="shortcut icon" href="assets/images/favicon.ico" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 
-    <!-- Meta tagy -->
-<meta name="title" content="Frentech">
-<meta name="description" content="Zaměřujeme se na tvorbu webů, 3D tisk, modelování, opravy mobilů a grafický design — vše rychle, spolehlivě a na míru.">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-<!-- Facebook -->
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://frentech.org/">
-<meta property="og:title" content="Frentech">
-<meta property="og:description" content="Zaměřujeme se na tvorbu webů, 3D tisk, modelování, opravy mobilů a grafický design — vše rychle, spolehlivě a na míru.">
-<meta property="og:image" content="">
+    :root {
+      --ink: #0d0d12;
+      --off: #f5f4f0;
+      --cream: #f0ece3;
+      --accent: #e8ff47;
+      --mid: #8a8a8a;
+      --border: rgba(13,13,18,0.12);
+      --font-display: 'Syne', sans-serif;
+      --font-body: 'DM Sans', sans-serif;
+    }
 
-<!-- Twitter -->
-<meta property="twitter:card" content="summary_large_image">
-<meta property="twitter:url" content="https://frentech.org/">
-<meta property="twitter:title" content="Frentech">
-<meta property="twitter:description" content="Zaměřujeme se na tvorbu webů, 3D tisk, správu a design — vše rychle, spolehlivě a na míru.">
-<meta property="twitter:image" content="">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
-<!-- jQuery (must come before Lightbox2) -->
+    html { scroll-behavior: smooth; }
 
-<link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css" rel="stylesheet">
+    body {
+      font-family: var(--font-body);
+      background: var(--off);
+      color: var(--ink);
+      overflow-x: hidden;
+    }
 
+    /* ─── CSS-ONLY ANIMATIONS (no JS required to show content) ─── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.5); opacity: 0.6; }
+    }
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
 
-<style>
-  .card-custom {
-  background-color: #f3f4fe;
-  padding: 24px;
-  border: 2px solid #e1e3f5;       /* or any colour you prefer */
-  border-radius: 12px;  
-}
+    .anim-1 { animation: fadeUp 0.6s ease both 0.05s; }
+    .anim-2 { animation: fadeUp 0.6s ease both 0.15s; }
+    .anim-3 { animation: fadeUp 0.6s ease both 0.25s; }
+    .anim-4 { animation: fadeUp 0.6s ease both 0.35s; }
+    .anim-5 { animation: fadeUp 0.6s ease both 0.45s; }
 
-  .kontakt-btn {
-  display: inline-block;
-  padding: 8px 16px;
-  border: 1px solid #000;
-  border-radius: 8px;
-  background-color: transparent;
-  color: #000;
-  text-decoration: none;
-  font-weight: 500;
-  transition: background-color 0.3s, color 0.3s;
-  cursor: pointer;
-}
-.kontakt-btn:hover {
-  background-color: #000;
-  color: #ffffff;
-}
+    /* ─── NAV ─── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 40px;
+      background: rgba(245,244,240,0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
 
-.ud-about-wrapper {
-  display: flex;
-  align-items: center;          /* keep the two columns vertically centred */
-  justify-content: space-between;
-}
+    .nav-logo img { height: 36px; display: block; }
 
-/* ------------- Image column ------------- */
-.ud-about-image {
-  /* give the picture column a bit more real estate (= “a little bigger”) */
-  flex: 0 0 42%;                /* tweak the % to taste */
+    .nav-links {
+      display: flex;
+      gap: 36px;
+      list-style: none;
+    }
 
-  /* equal spacing from the section’s top, bottom & right edges */
-  margin: 2.5rem 2.5rem 2.5rem 0;
-  /*  ↑        ↑        ↑        ↑
-     top     right    bottom   left (0) */
-}
+    .nav-links a {
+      font-family: var(--font-display);
+      font-size: 0.88rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--ink);
+      text-decoration: none;
+      opacity: 0.5;
+      transition: opacity 0.2s;
+    }
 
-/* ------------- Actual <img> tweaks ------------- */
-.about-img-wrapper {
-  border-radius: 12px;
-  overflow: hidden;
-  border: 2px solid lavender;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  max-width: 100%;
-}
+    .nav-links a:hover { opacity: 1; }
 
-.about-img {
-  width: 100%;
-  height: auto;
-  display: block;
-}
+    .nav-cta {
+      background: var(--ink) !important;
+      color: var(--accent) !important;
+      opacity: 1 !important;
+      padding: 10px 22px;
+      border-radius: 100px;
+      transition: transform 0.2s !important;
+    }
 
-.uvod-img {
-  border: 2px solid #e1e3f5;
-  border-radius: 15px;
-}
+    .nav-cta:hover { transform: translateY(-1px); }
 
-.contact-popup {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.6);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.2s ease, visibility 0.2s ease;
-}
+    .burger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+    }
 
-.contact-popup.show {
-  opacity: 1;
-  visibility: visible;
-}
+    .burger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--ink);
+      border-radius: 2px;
+      transition: transform 0.3s, opacity 0.3s;
+    }
 
-.popup-content {
-  background: rgb(255, 255, 255);
-  padding: 20px 30px;
-  border-radius: 10px;
-  width: 300px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-  text-align: center;
-  position: relative;
-}
+    .burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .burger.open span:nth-child(2) { opacity: 0; }
+    .burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-.ud-feature-link {
-  cursor: pointer;
-} 
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: var(--ink);
+      z-index: 150;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 48px;
+    }
 
-.popup-header {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
+    .mobile-menu.open { display: flex; }
 
-.popup-header h3 {
-  width: 100%;
-  text-align: center;
-  margin: 0;
-}
+    .mobile-menu a {
+      font-family: var(--font-display);
+      font-size: 2.4rem;
+      font-weight: 800;
+      color: var(--off);
+      text-decoration: none;
+      letter-spacing: -0.02em;
+      transition: color 0.2s;
+    }
 
-.close-btn {
-  font-size: 20px;
-  color: #333;
-  cursor: pointer;
-  transition: color 0.2s ease;
-  display: inline-block; /* crucial: make sure it's inline-block */
-  margin-left: 15px; 
-}
+    .mobile-menu a:hover { color: var(--accent); }
 
-.close-btn:hover {
-  color: #dc3545;
-}
+    /* ─── HERO ─── */
+    #home {
+      min-height: 100vh;
+      padding: 160px 40px 100px;
+      display: flex;
+      align-items: center;
+    }
 
-.menu-bg {
-  background: transparent;
-  border-radius: 12px;
-  box-shadow: none;
-  padding: 20px 0;
-  margin-top: 10px;
-  position: relative;
-  z-index: 1051;
-  transition: none;
-  flex-direction: row;
-  justify-content: flex-end;
-  align-items: center;
-}
+    .hero-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
 
-@media (max-width: 991.98px) {
-  .menu-bg {
-    position: absolute;
-    top: 60px; /* height of your navbar */
-    left: 0;
-    right: 0;
-    width: 100vw;
-    background: rgba(30, 32, 50, 0.98);
-    border-radius: 0 0 12px 12px;
-    box-shadow: 0 8px 32px rgba(0,0,0,0.18);
-    z-index: 2000;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    max-height: calc(60px * 5); /* 5 menu items × 60px each */
-    overflow-y: auto;
-    padding: 0;
-    margin-top: 0;
-    /* REMOVE display: none; Bootstrap will handle it */
-  }
-  .menu-bg ul.navbar-nav {
-    flex-direction: column;
-    width: 100%;
-    align-items: center;
-    gap: 0;
-    margin: 0;
-    padding: 0;
-  }
-  .menu-bg .nav-link {
-    color: #fff !important;
-    font-size: 2.2rem;
-    font-weight: 700;
-    padding: 1rem 0;
-    transition: color 0.2s;
-  }
-  .menu-bg .nav-link:hover,
-  .menu-bg .nav-link.active {
-    color: #aab4ff !important;
-  }
-}
-.navbar-toggler {
-  border: none;
-  outline: none;
-  margin-left: auto;
-  /* Ensures right alignment */
-}
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--mid);
+      margin-bottom: 28px;
+    }
 
-/* Optional: make burger icon darker */
-.navbar-toggler-icon {
-  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba%280,0,0,0.7%29' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
-}
+    .hero-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      animation: pulse 2s ease-in-out infinite;
+      flex-shrink: 0;
+    }
 
-/* Hide the custom menu by default */
-.menu-bg-custom {
-  display: none;
-}
+    h1 {
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 6vw, 5.5rem);
+      font-weight: 800;
+      line-height: 1.0;
+      letter-spacing: -0.03em;
+      color: var(--ink);
+    }
 
-/* Show only on mobile and only when active */
-@media (max-width: 991.98px) {
-  .menu-bg-custom {
-    position: fixed;
-    top: 0; left: 0; right: 0; bottom: 0;
-    width: 100vw;
-    height: 100vh;
-    background: rgba(30, 32, 50, 0.98);
-    z-index: 2000;
-    display: none;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    transition: none;
-  }
-  .menu-bg-custom.active {
-    display: flex !important;
-  }
-  .menu-bg-custom ul.navbar-nav {
-    flex-direction: column;
-    width: 100%;
-    align-items: center;
-    gap: 2.5rem;
-    margin: 0;
-    padding: 0;
-  }
-  .menu-bg-custom .nav-link {
-    color: #fff !important;
-    font-size: 2.2rem;
-    font-weight: 700;
-    padding: 1rem 0;
-    transition: color 0.2s;
-  }
-  .menu-bg-custom .nav-link:hover,
-  .menu-bg-custom .nav-link.active {
-    color: #aab4ff !important;
-  }
-}
-</style>
+    h1 .accent-word {
+      color: transparent;
+      -webkit-text-stroke: 2px var(--ink);
+    }
 
+    .hero-desc {
+      margin-top: 28px;
+      font-size: 1.05rem;
+      line-height: 1.7;
+      color: var(--mid);
+      max-width: 440px;
+    }
 
-    <!--====== Favicon ikona ======-->
-    <link
-      rel="shortcut icon"
-      href="assets/images/fren1.svg"
-      type="image/svg"
-    />
+    .hero-actions {
+      margin-top: 44px;
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
 
-    <!-- ===== Soubory CSS ===== -->
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="assets/css/animate.css" />
-    <link rel="stylesheet" href="assets/css/lineicons.css" />
-    <link rel="stylesheet" href="assets/css/ud-styles.css" />
+    .btn-primary {
+      background: var(--ink);
+      color: var(--accent);
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 0.9rem;
+      letter-spacing: 0.02em;
+      padding: 16px 32px;
+      border-radius: 100px;
+      text-decoration: none;
+      border: 2px solid var(--ink);
+      transition: background 0.2s, color 0.2s, transform 0.2s;
+      display: inline-block;
+    }
+
+    .btn-primary:hover {
+      background: transparent;
+      color: var(--ink);
+      transform: translateY(-2px);
+    }
+
+    .btn-ghost {
+      color: var(--ink);
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 0.9rem;
+      text-decoration: none;
+      opacity: 0.5;
+      transition: opacity 0.2s;
+    }
+
+    .btn-ghost:hover { opacity: 1; }
+
+    .hero-visual { position: relative; }
+
+    .hero-img-frame {
+      border-radius: 24px;
+      overflow: hidden;
+      border: 2px solid var(--border);
+      box-shadow: 0 32px 80px rgba(13,13,18,0.14);
+      aspect-ratio: 4/3;
+      background: var(--cream);
+    }
+
+    .hero-img-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .hero-badge {
+      position: absolute;
+      bottom: -20px;
+      left: -20px;
+      background: var(--accent);
+      border-radius: 16px;
+      padding: 16px 20px;
+      border: 3px solid var(--ink);
+      box-shadow: 4px 4px 0 var(--ink);
+    }
+
+    .hero-badge .badge-num {
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--ink);
+      line-height: 1;
+    }
+
+    .hero-badge .badge-label {
+      font-size: 0.72rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--ink);
+      opacity: 0.7;
+    }
+
+    .hero-tag {
+      position: absolute;
+      top: -16px;
+      right: -16px;
+      background: var(--ink);
+      color: var(--accent);
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 0.78rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 10px 18px;
+      border-radius: 100px;
+    }
+
+    /* ─── SECTION COMMON ─── */
+    section { padding: 120px 40px; }
+
+    .container { max-width: 1200px; margin: 0 auto; }
+
+    .section-label {
+      font-family: var(--font-display);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--mid);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .section-label::before {
+      content: '';
+      display: block;
+      width: 32px;
+      height: 2px;
+      background: var(--accent);
+      border-radius: 2px;
+      flex-shrink: 0;
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.05;
+      color: var(--ink);
+      margin-bottom: 20px;
+    }
+
+    .section-desc {
+      font-size: 1rem;
+      color: var(--mid);
+      line-height: 1.7;
+      max-width: 520px;
+    }
+
+    /* ─── SERVICES ─── */
+    #služby { background: var(--ink); }
+    #služby .section-label { color: rgba(255,255,255,0.4); }
+    #služby .section-title { color: var(--off); }
+    #služby .section-desc { color: rgba(255,255,255,0.5); }
+
+    .services-header {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: end;
+      margin-bottom: 60px;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2px;
+    }
+
+    .service-card {
+      background: rgba(255,255,255,0.04);
+      padding: 48px 36px;
+      border: 1px solid rgba(255,255,255,0.06);
+      transition: background 0.3s;
+    }
+
+    .service-card:nth-child(1) { border-radius: 20px 0 0 0; }
+    .service-card:nth-child(2) { border-radius: 0 20px 0 0; }
+    .service-card:nth-child(3) { border-radius: 0 0 0 20px; }
+    .service-card:nth-child(4) { border-radius: 0 0 20px 0; }
+    .service-card:hover { background: rgba(232,255,71,0.06); }
+    .service-card:hover .service-icon { background: var(--accent); color: var(--ink); }
+
+    .service-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      margin-bottom: 28px;
+      transition: background 0.3s, color 0.3s;
+      color: rgba(255,255,255,0.7);
+    }
+
+    .service-name {
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--off);
+      margin-bottom: 14px;
+    }
+
+    .service-desc {
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.45);
+      line-height: 1.7;
+      margin-bottom: 24px;
+    }
+
+    .service-price {
+      font-family: var(--font-display);
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    /* ─── ABOUT ─── */
+    #about { background: var(--cream); }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .about-img-wrap { position: relative; }
+
+    .about-img-frame {
+      border-radius: 20px;
+      overflow: hidden;
+      border: 2px solid var(--border);
+      aspect-ratio: 4/3;
+      box-shadow: 0 24px 60px rgba(13,13,18,0.1);
+    }
+
+    .about-img-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .about-sticker {
+      position: absolute;
+      top: -24px;
+      right: -24px;
+      width: 100px;
+      height: 100px;
+      background: var(--accent);
+      border-radius: 50%;
+      border: 3px solid var(--ink);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      text-align: center;
+      line-height: 1.3;
+      color: var(--ink);
+      animation: spin 12s linear infinite;
+    }
+
+    .about-values {
+      margin-top: 36px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .value-item {
+      background: var(--off);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 20px 22px;
+    }
+
+    .value-icon { font-size: 1.3rem; margin-bottom: 10px; }
+
+    .value-name {
+      font-family: var(--font-display);
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 4px;
+    }
+
+    .value-text { font-size: 0.82rem; color: var(--mid); line-height: 1.5; }
+
+    /* ─── TEAM ─── */
+    #team { background: var(--off); }
+
+    .team-header {
+      text-align: center;
+      max-width: 560px;
+      margin: 0 auto 60px;
+    }
+
+    .team-header .section-label { justify-content: center; }
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+
+    .team-card {
+      background: var(--cream);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 36px 28px;
+      text-align: center;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .team-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 48px rgba(13,13,18,0.1);
+    }
+
+    .team-avatar {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin: 0 auto 20px;
+      display: block;
+      border: 3px solid var(--ink);
+    }
+
+    .team-name {
+      font-family: var(--font-display);
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 6px;
+    }
+
+    .team-role {
+      font-size: 0.82rem;
+      color: var(--mid);
+      margin-bottom: 20px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      font-weight: 500;
+    }
+
+    .team-socials {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      list-style: none;
+    }
+
+    .team-socials a {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 1.5px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--mid);
+      text-decoration: none;
+      transition: background 0.2s, color 0.2s, border-color 0.2s;
+    }
+
+    .team-socials a:hover {
+      background: var(--ink);
+      color: var(--accent);
+      border-color: var(--ink);
+    }
+
+    .icon-li, .icon-ig { width: 16px; height: 16px; fill: currentColor; }
+
+    /* ─── CONTACT ─── */
+    #contact { background: var(--ink); }
+    #contact .section-label { color: rgba(255,255,255,0.4); }
+    #contact .section-title { color: var(--off); }
+
+    .contact-wrap {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .contact-tagline {
+      font-size: 1rem;
+      color: rgba(255,255,255,0.45);
+      line-height: 1.7;
+      margin-top: 16px;
+    }
+
+    .contact-cards { display: flex; flex-direction: column; gap: 16px; }
+
+    .contact-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px;
+      padding: 24px 28px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      text-decoration: none;
+      transition: background 0.2s, border-color 0.2s;
+    }
+
+    .contact-card:hover {
+      background: rgba(232,255,71,0.07);
+      border-color: rgba(232,255,71,0.2);
+    }
+
+    .contact-card-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: rgba(232,255,71,0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+      color: var(--accent);
+    }
+
+    .contact-card-label {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: rgba(255,255,255,0.4);
+      font-weight: 500;
+      margin-bottom: 4px;
+    }
+
+    .contact-card-value {
+      font-family: var(--font-display);
+      font-weight: 600;
+      color: var(--off);
+      font-size: 0.95rem;
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: #07070a;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding: 48px 40px;
+    }
+
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 24px;
+    }
+
+    .footer-logo img { height: 28px; filter: invert(1); display: block; }
+
+    .footer-info {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.3);
+      line-height: 1.7;
+      text-align: right;
+    }
+
+    /* Back to top */
+    .back-top {
+      position: fixed;
+      bottom: 32px;
+      right: 32px;
+      width: 46px;
+      height: 46px;
+      background: var(--ink);
+      border: 2px solid var(--accent);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 1.1rem;
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity 0.3s, transform 0.3s;
+      z-index: 50;
+    }
+
+    .back-top.visible { opacity: 1; transform: translateY(0); }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 1024px) {
+      .hero-grid { grid-template-columns: 1fr; gap: 48px; }
+      .hero-visual { order: -1; }
+      .services-grid { grid-template-columns: 1fr; }
+      .service-card:nth-child(1) { border-radius: 20px 20px 0 0; }
+      .service-card:nth-child(2) { border-radius: 20px 20px 0 0; }
+      .service-card:nth-child(3) { border-radius: 0 0 20px 20px; }
+      .service-card:nth-child(4) { border-radius: 0 0 20px 20px; }
+      .about-grid { grid-template-columns: 1fr; gap: 48px; }
+      .team-grid { grid-template-columns: repeat(2, 1fr); }
+      .contact-wrap { grid-template-columns: 1fr; gap: 48px; }
+      .services-header { grid-template-columns: 1fr; gap: 24px; }
+    }
+
+    @media (max-width: 768px) {
+      nav { padding: 16px 24px; }
+      .nav-links { display: none; }
+      .burger { display: flex; }
+      section { padding: 80px 24px; }
+      #home { padding: 120px 24px 80px; }
+      .team-grid { grid-template-columns: 1fr; }
+      footer { padding: 40px 24px; }
+      .footer-inner { flex-direction: column; align-items: flex-start; }
+      .footer-info { text-align: left; }
+      .about-values { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
-  <body>
+<body>
 
+<!-- ─── NAV ─── -->
+<nav>
+  <a class="nav-logo" href="#home">
+    <img src="assets/images/frenlogo2_converted.svg" alt="Frentech" />
+  </a>
+  <ul class="nav-links">
+    <li><a href="#home">Domov</a></li>
+    <li><a href="#služby">Služby</a></li>
+    <li><a href="#about">O nás</a></li>
+    <li><a href="#team">Tým</a></li>
+    <li><a href="#contact" class="nav-cta">Kontakt</a></li>
+  </ul>
+  <button class="burger" id="burger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
 
-   <!-- ====== Header start ====== -->
-<header class="ud-header">
+<!-- Mobile menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#home">Domov</a>
+  <a href="#služby">Služby</a>
+  <a href="#about">O nás</a>
+  <a href="#team">Tým</a>
+  <a href="#contact">Kontakt</a>
+</div>
+
+<!-- ─── HERO ─── -->
+<section id="home">
   <div class="container">
-    <div class="row">
-      <div class="col-lg-12">
-        <nav class="navbar navbar-expand-lg" style="padding-top: 15px; padding-bottom: 15px;">
-          <a class="navbar-brand" href="index.html">
-            <img src="assets/images/frenlogo2_converted.svg" alt="Logo" />
-          </a>
-          <!-- Burger button for mobile, aligned right -->
-          
-          
-          <!-- Responsive menu: horizontal on desktop, fullscreen on mobile -->
-          <div class="collapse navbar-collapse menu-bg" id="mainNavbar">
-            <ul class="navbar-nav ms-auto text-center w-100">
-              <li class="nav-item"><a class="nav-link ud-menu-scroll" href="#home">Domov</a></li>
-              <li class="nav-item"><a class="nav-link ud-menu-scroll" href="#služby">Služby</a></li>
-              <li class="nav-item"><a class="nav-link ud-menu-scroll" href="#about">O nás</a></li>
-              <li class="nav-item"><a class="nav-link ud-menu-scroll" href="#team">Tým</a></li>
-              <li class="nav-item"><a class="nav-link ud-menu-scroll" href="#contact">Kontakt</a></li>
-            </ul>
-          </div>
-        </nav>
+    <div class="hero-grid">
+
+      <div>
+        <div class="hero-eyebrow anim-1">
+          <span class="hero-dot"></span>
+          Tvorba webů na míru
+        </div>
+        <h1 class="anim-2">OD NÁPADU<br>PO <span class="accent-word">REALITU</span></h1>
+        <p class="hero-desc anim-3">
+          Navrhujeme a vytváříme moderní weby s důrazem na detail — rychle, spolehlivě a přesně podle vašich požadavků.
+        </p>
+        <div class="hero-actions anim-4">
+          <a href="#contact" class="btn-primary">Zahájit projekt →</a>
+          <a href="#služby" class="btn-ghost">Naše služby ↓</a>
+        </div>
+      </div>
+
+      <div class="hero-visual anim-3">
+        <div class="hero-tag">Frenštát p.R.</div>
+        <div class="hero-img-frame">
+          <img src="assets/images/hero/foto_uvod.jpeg" alt="Frentech tým" />
+        </div>
+        <div class="hero-badge">
+          <div class="badge-num">100%</div>
+          <div class="badge-label">Na míru</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ─── SERVICES ─── -->
+<section id="služby">
+  <div class="container">
+    <div class="services-header">
+      <div class="anim-1">
+        <div class="section-label">Služby</div>
+        <h2 class="section-title">Co vám<br>nabídneme</h2>
+      </div>
+      <p class="section-desc anim-2">
+        Každý projekt řešíme individuálně a na míru. Nabízíme tvorbu webů, správu, redesign i instalaci bezpečnostních systémů a kamer.
+      </p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card anim-1">
+        <div class="service-icon">🛠️</div>
+        <div class="service-name">Tvorba webu</div>
+        <p class="service-desc">Moderní web postavený na míru — responzivní design, rychlé načítání, čistý kód.</p>
+        <div class="service-price">od 10 000 Kč</div>
+      </div>
+      <div class="service-card anim-2">
+        <div class="service-icon">⚙️</div>
+        <div class="service-name">Správa webu</div>
+        <p class="service-desc">Pravidelné aktualizace, zálohování, bezpečnost a technická péče o váš web.</p>
+        <div class="service-price">od 500 Kč / měsíc</div>
+      </div>
+      <div class="service-card anim-3">
+        <div class="service-icon">✨</div>
+        <div class="service-name">Redesign</div>
+        <p class="service-desc">Dáme vašemu stávajícímu webu nový moderní vzhled a lepší uživatelský zážitek.</p>
+        <div class="service-price">od 6 000 Kč</div>
+      </div>
+      <div class="service-card anim-4">
+        <div class="service-icon">🔐</div>
+        <div class="service-name">Bezpečnostní systémy</div>
+        <p class="service-desc">Instalace a správa bezpečnostních kamer, přístupových systémů a monitoringu objektů.</p>
+        <div class="service-price">od 5 000 Kč</div>
       </div>
     </div>
   </div>
-</header>
-<!-- ====== Header konec ====== -->
+</section>
 
-
-
-
-
-    <!-- ====== Hero Start ====== -->
-<section class="ud-hero" id="home">
+<!-- ─── ABOUT ─── -->
+<section id="about">
   <div class="container">
-    <div class="row align-items-center">
-      
-      <!-- Text -->
-      <div class="col-lg-6 col-md-12 wow fadeInUp" data-wow-delay=".2s" style="animation-duration: 2.5s;">
-        <h1 class="ud-hero-title122">
-          VŠE, CO POTŘEBUJETE
-        </h1>
-        <h1 class="ud-hero-title1">
-          OD NÁPADU PO REALIZACI
-        </h1>
-        <p class="ud-hero-desc1">
-          Navrhujeme, tvoříme a dodáváme digitální i fyzické produkty s důrazem na detail.
+    <div class="about-grid">
+
+      <div class="about-img-wrap anim-1">
+        <div class="about-img-frame">
+          <img src="assets/images/hero/foto_uvod.jpeg" alt="Tým Frentech" />
+        </div>
+        <div class="about-sticker">Mladý<br>tým</div>
+      </div>
+
+      <div class="anim-2">
+        <div class="section-label">O nás</div>
+        <h2 class="section-title">Kde se nápady<br>mění v realitu</h2>
+        <p class="section-desc">
+          Jsme tým mladých a zapálených lidí z Frenštátu pod Radhoštěm. Věnujeme se vývoji webů s důrazem na kvalitu a detail. Ke každému projektu přistupujeme individuálně.
+        </p>
+        <div class="about-values">
+          <div class="value-item">
+            <div class="value-icon">⚡</div>
+            <div class="value-name">Rychlost</div>
+            <div class="value-text">Dodáváme včas a bez zbytečných průtahů</div>
+          </div>
+          <div class="value-item">
+            <div class="value-icon">🎯</div>
+            <div class="value-name">Přesnost</div>
+            <div class="value-text">Každý pixel a řádek kódu je na svém místě</div>
+          </div>
+          <div class="value-item">
+            <div class="value-icon">🤝</div>
+            <div class="value-name">Spolehlivost</div>
+            <div class="value-text">Stojíme za každým projektem, který vydáme</div>
+          </div>
+          <div class="value-item">
+            <div class="value-icon">💡</div>
+            <div class="value-name">Kreativita</div>
+            <div class="value-text">Přinášíme čerstvý pohled a originální řešení</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ─── TEAM ─── -->
+<section id="team">
+  <div class="container">
+
+    <div class="team-header anim-1">
+      <div class="section-label">Náš tým</div>
+      <h2 class="section-title">Tým, který za tím stojí</h2>
+      <p class="section-desc" style="margin: 0 auto;">Každý z nás přináší jiný pohled — společně tvoříme celek, který funguje.</p>
+    </div>
+
+    <div class="team-grid">
+
+      <!-- 1. Mikuláš Vašek — CEO -->
+      <div class="team-card anim-1">
+        <img src="assets/images/team/team-06.png" alt="Mikuláš Vašek" class="team-avatar" />
+        <div class="team-name">Mikuláš Vašek</div>
+        <div class="team-role">CEO, Security systems</div>
+        <ul class="team-socials">
+          <li><a href="https://www.linkedin.com/in/mikul%C3%A1%C5%A1-va%C5%A1ek-479a702a4/" target="_blank" aria-label="LinkedIn">
+            <svg class="icon-li" viewBox="0 0 24 24"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.95v5.66H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 110-4.12 2.06 2.06 0 010 4.12zM3.56 20.45h3.55V9H3.56v11.45z"/></svg>
+          </a></li>
+          <li><a href="https://www.instagram.com/mikesek_vasek/" target="_blank" aria-label="Instagram">
+            <svg class="icon-ig" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+          </a></li>
+        </ul>
+      </div>
+
+      <!-- 2. Oleksandr Potomkin -->
+      <div class="team-card anim-2">
+        <img src="assets/images/team/team-02.png" alt="Oleksandr Potomkin" class="team-avatar" />
+        <div class="team-name">Oleksandr Potomkin</div>
+        <div class="team-role">Head Web Developer / Designer</div>
+        <ul class="team-socials">
+          <li><a href="https://www.linkedin.com/in/oleksandr-potomkin-0093a11b6/" target="_blank" aria-label="LinkedIn">
+            <svg class="icon-li" viewBox="0 0 24 24"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.95v5.66H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 110-4.12 2.06 2.06 0 010 4.12zM3.56 20.45h3.55V9H3.56v11.45z"/></svg>
+          </a></li>
+          <li><a href="https://www.instagram.com/oleksandr.potomkin/" target="_blank" aria-label="Instagram">
+            <svg class="icon-ig" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+          </a></li>
+        </ul>
+      </div>
+
+      <!-- 3. Tomáš Pachomov -->
+      <div class="team-card anim-3">
+        <img src="assets/images/team/team-01.png" alt="Tomáš Pachomov" class="team-avatar" />
+        <div class="team-name">Tomáš Pachomov</div>
+        <div class="team-role">Web Developer / Designer</div>
+        <ul class="team-socials">
+          <li><a href="" target="_blank" aria-label="LinkedIn">
+            <svg class="icon-li" viewBox="0 0 24 24"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.95v5.66H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 110-4.12 2.06 2.06 0 010 4.12zM3.56 20.45h3.55V9H3.56v11.45z"/></svg>
+          </a></li>
+          <li><a href="" target="_blank" aria-label="Instagram">
+            <svg class="icon-ig" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+          </a></li>
+        </ul>
+      </div>
+
+      <!-- 4. Vilém Janečka -->
+      <div class="team-card anim-4">
+        <img src="assets/images/team/team-04.png" alt="Vilém Janečka" class="team-avatar" />
+        <div class="team-name">Vilém Janečka</div>
+        <div class="team-role">Web Maintenance</div>
+        <ul class="team-socials">
+          <li><a href="https://www.linkedin.com/in/vil%C3%A9m-jane%C4%8Dka-6418aa367/" target="_blank" aria-label="LinkedIn">
+            <svg class="icon-li" viewBox="0 0 24 24"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.95v5.66H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 110-4.12 2.06 2.06 0 010 4.12zM3.56 20.45h3.55V9H3.56v11.45z"/></svg>
+          </a></li>
+          <li><a href="https://www.instagram.com/vilaann_/" target="_blank" aria-label="Instagram">
+            <svg class="icon-ig" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+          </a></li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ─── CONTACT ─── -->
+<section id="contact">
+  <div class="container">
+    <div class="contact-wrap">
+
+      <div class="anim-1">
+        <div class="section-label">Kontakt</div>
+        <h2 class="section-title">Pojďme<br>spolupracovat</h2>
+        <p class="contact-tagline">
+          Ozvěte se nám — společně najdeme řešení pro váš projekt.
         </p>
       </div>
 
-      <!-- Image -->
-      <div class="col-lg-6 col-md-12 wow fadeInUp" data-wow-delay=".3s" style="animation-duration: 1.3s;">
-        <img src="assets/images/hero/foto_uvod.jpeg" alt="hero-image" class="uvod-img"/>
+      <div class="contact-cards anim-2">
+        <a href="mailto:kontakt@frentech.org" class="contact-card">
+          <div class="contact-card-icon">📧</div>
+          <div>
+            <div class="contact-card-label">E-mail</div>
+            <div class="contact-card-value">kontakt@frentech.org</div>
+          </div>
+        </a>
+        <a href="tel:+420725932874" class="contact-card">
+          <div class="contact-card-icon">📞</div>
+          <div>
+            <div class="contact-card-label">Telefon</div>
+            <div class="contact-card-value">725 932 874</div>
+          </div>
+        </a>
+        <a href="https://instagram.com/frentech_org" target="_blank" class="contact-card">
+          <div class="contact-card-icon">📷</div>
+          <div>
+            <div class="contact-card-label">Instagram</div>
+            <div class="contact-card-value">@frentech_org</div>
+          </div>
+        </a>
+        <a href="https://www.facebook.com/profile.php?id=61576707370467" target="_blank" class="contact-card">
+          <div class="contact-card-icon">ⓕ</div>
+          <div>
+            <div class="contact-card-label">Facebook</div>
+            <div class="contact-card-value">Frentech</div>
+          </div>
+        </a>
       </div>
 
     </div>
   </div>
 </section>
-<!-- ====== Hero End ====== -->
 
-
-   <!-- ====== Služby Start ====== -->
-<section id="služby" class="ud-služby wow fadeInUp style="padding: 80px 0;">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-12">
-        <div class="ud-section-title">
-          <span>Služby</span>
-          <h2>Co vám můžeme nabídnout</h2>
-          <p>
-            Přehled našich služeb a jejich cen. Každý projekt řešíme individuálně, proto nabízíme flexibilní možnosti podle vašich požadavků.
-          </p>
-        </div>
-      </div>
-    </div>
-
-    <div class="row">
-      <!-- Tvorba webu -->
-      <div class="col-xl-3 col-lg-3 col-sm-6 mb-4">
-        <div class="ud-single-team wow fadeInUp" data-wow-delay=".1s" style="animation-duration: 1s;">
-        <div class="card-custom h-100">
-          <div class="mb-3">
-            <i class="bi bi-code-slash fs-1"></i>
-          </div>
-          <h3>Tvorba/Správa webu</h3>
-          <p>Moderní web na míru, responzivní design.</p>
-          <p class="fw-bold">od 5000 do 11000 Kč</p>
-          <a class="kontakt-btn" onclick="showContactPopup('kontakt@frentech.org', '+420 792 313 185')">Kontakt</a>
-        </div>
-        </div>
-      </div>
-
-     
-      <div class="col-xl-3 col-lg-3 col-sm-6 mb-4">
-        <div class="ud-single-team wow fadeInUp" data-wow-delay=".1s" style="animation-duration: 1.5s;">
-        <div class="card-custom h-100">
-          <div class="mb-3">
-            <i class="bi bi-screwdriver fs-1"></i>
-          </div>
-          <h3>Opravy mobilů, tabletů, počítačů</h3>
-          <p>Diagnostika závad, výměna displejů, baterií a opravy hardwaru i softwaru.</p>
-          <p class="fw-bold"></p>
-          <a class="kontakt-btn" onclick="showContactPopup('kontakt@frentech.org', '+420 704 515 495')">Kontakt</a>
-        </div>
-        </div>
-      </div>
-
-      <!-- 3D Tisk -->
-      <div class="col-xl-3 col-lg-3 col-sm-6 mb-4">
-        <div class="ud-single-team wow fadeInUp" data-wow-delay=".1s" style="animation-duration: 2s;">
-        <div class="card-custom h-100">
-          <div class="mb-3">
-            <i class="bi bi-badge-3d fs-1"></i>
-          </div>
-          <h3>3D Tisk, modelování</h3>
-          <p>Zakázkový 3D tisk na míru z ASA, PC a dalších materialů.</p>
-          <p class="fw-bold">od 2 Kč / gram</p>
-          <a class="kontakt-btn" onclick="showContactPopup('kontakt@frentech.org', '+420 730 652 556')">Kontakt</a>
-        </div>
-        </div>
-      </div>
-
-      <!-- Grafický design -->
-      <div class="col-xl-3 col-lg-3 col-sm-6 mb-4">
-        <div class="ud-single-team wow fadeInUp" data-wow-delay=".1s" style="animation-duration: 2.5s;">
-        <div class="card-custom h-100">
-          <div class="mb-3">
-            <i class="bi bi-palette fs-1"></i>
-          </div>
-          <h3>Grafický design</h3>
-          <p>Střih videí, tvorba firemních log, vizitek, bannerů a dalšího audiovizuálního obsahu.</p>
-          <p class="fw-bold">od 2000 Kč</p>
-          <a class="kontakt-btn" onclick="showContactPopup('kontakt@frentech.org', '+420 725 932 874')">Kontakt</a>
-        </div>
-      </div>
-      </div>
-    </div>
-  </div>
-</section>
-<!-- ====== Služby konec ====== -->
-
-
-    <!-- ====== O nás start ====== -->
-  <section id="about" class="ud-about">
-    <div class="container">
-      <div class="ud-about-wrapper wow fadeInUp" data-wow-delay=".25s" style="animation-duration: 2s;">
-        <div class="ud-about-content-wrapper">
-          <div class="ud-about-content">
-            <span class="tag">O nás</span>
-            <h2>Kde se nápady mění v realitu</h2>
-
-            <p style="margin-bottom: -80px;">
-              Jsme tým mladých a zapálených lidí, kteří se věnují vývoji webů, 3D tisku a grafickému designu. Naším cílem je poskytovat kvalitní a dostupná řešení jak pro jednotlivce, tak pro firmy.
-              Ke každému projektu přistupujeme individuálně a s důrazem na detail.
-            </p>
-          </div>
-        </div>
-        <div class="ud-about-image about-img" >
-         <a href="assets/images/about/team.png" data-lightbox="about" data-title="Náš tým">
-  <div class="about-img-wrapper">
-    <img src="assets/images/about/team.png" alt="Náš tým" class="about-img" />
-  </div>
-</a>
-
-
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- ====== O nás konec ====== -->
-
-
-     <!-- ====== Tým Start ====== -->
-    <section id="team" class="ud-team">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-12">
-            <div class="ud-section-title mx-auto text-center">
-              <span>Náš tým</span>
-              <h2>Tým, který za tím stojí</h2>
-              <p>
-                 Jsme tým, který táhne za jeden provaz. Každý z nás přináší jiný pohled, společně tvoříme celek.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-xl-3 col-lg-3 col-sm-6">
-            <div class="ud-single-team wow fadeInUp" data-wow-delay=".1s" style="animation-duration: 2s;">
-              <div class="ud-team-image-wrapper">
-                <div class="ud-team-image">
-                  <img src="assets/images/team/team-04.png" alt="team" />
-                </div>
-
-                <img
-                  src="assets/images/team/Trojúhelník.svg"
-                  alt="shape"
-                  class="shape shape-2"
-                />
-              </div>
-              <div class="ud-team-info">
-                <h5>Vilém Janečka</h5>
-                <h6>Údržba webů</h6>
-              </div>
-              <ul class="ud-team-socials">
-                <li>
-                  <a href="https://www.linkedin.com/in/vil%C3%A9m-jane%C4%8Dka-6418aa367/">
-                    <i class="lni lni-linkedin-original"></i>
-                  </a>
-                </li>
-                <li>
-                  <a href="https://www.instagram.com/vilaann_/">
-                    <i class="lni lni-instagram-filled"></i>
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-xl-3 col-lg-3 col-sm-6">
-            <div class="ud-single-team wow fadeInUp" data-wow-delay=".15s" style="animation-duration: 2s;">
-              <div class="ud-team-image-wrapper">
-                <div class="ud-team-image">
-                  <img src="assets/images/team/team-02.png" alt="team" />
-                </div>
-
-                <img
-                  src="assets/images/team/Trojúhelník.svg"
-                  alt="shape"
-                  class="shape shape-2"
-                />
-              </div>
-              <div class="ud-team-info">
-                <h5>Oleksandr Potomkin</h5>
-                <h6>Head Web Developer/Designer</h6>
-              </div>
-              <ul class="ud-team-socials">
-                <li>
-                  <a href="https://www.linkedin.com/in/oleksandr-potomkin-0093a11b6/">
-                    <i class="lni lni-linkedin-original"></i>
-                  </a>
-                </li>
-                <li>
-                  <a href="https://www.instagram.com/oleksandr.potomkin/">
-                    <i class="lni lni-instagram-filled"></i>
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="col-xl-3 col-lg-3 col-sm-6">
-            <div class="ud-single-team wow fadeInUp" data-wow-delay=".15s" style="animation-duration: 2s;">
-              <div class="ud-team-image-wrapper">
-                <div class="ud-team-image">
-                  <img src="assets/images/team/team-02.png" alt="team" />
-                </div>
-
-                <img
-                  src="assets/images/team/Trojúhelník.svg"
-                  alt="shape"
-                  class="shape shape-2"
-                />
-              </div>
-              <div class="ud-team-info">
-                <h5>Tomáš Pachomov</h5>
-                <h6>Web Developer/Desgner</h6>
-              </div>
-              <ul class="ud-team-socials">
-                <li>
-                  <a href="https://www.linkedin.com/in/oleksandr-potomkin-0093a11b6/">
-                    <i class="lni lni-linkedin-original"></i>
-                  </a>
-                </li>
-                <li>
-                  <a href="https://www.instagram.com/oleksandr.potomkin/">
-                    <i class="lni lni-instagram-filled"></i>
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-xl-3 col-lg-3 col-sm-6">
-            <div class="ud-single-team wow fadeInUp" data-wow-delay=".2s" style="animation-duration: 2s;">
-              <div class="ud-team-image-wrapper">
-                <div class="ud-team-image">
-                  <img src="assets/images/team/team-06.png" alt="team" />
-                </div>
-
-                <img
-                  src="assets/images/team/Trojúhelník.svg"
-                  alt="shape"
-                  class="shape shape-2"
-                />
-              </div>
-              <div class="ud-team-info">
-                <h5>Mikuláš Vašek</h5>
-                <h6>Komunikace</h6>
-              </div>
-              <ul class="ud-team-socials">
-                <li>
-                  <a href="https://www.linkedin.com/in/mikul%C3%A1%C5%A1-va%C5%A1ek-479a702a4/">
-                    <i class="lni lni-linkedin-original"></i>
-                  </a>
-                </li>
-                <li>
-                  <a href="https://www.instagram.com/mikesek_vasek/">
-                    <i class="lni lni-instagram-filled"></i>
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- ====== Tým konec ====== -->
-   
-    <!-- ====== kontakt Start ====== -->
-<section id="contact" class="ud-contact" style="background-color: #E6E6FA;">
-  <div class="container" style="padding-top: 25px; padding-bottom: 25px;">
-    <div class="row align-items-start">
-      <div class="col-xl-8 col-lg-7">
-        <div class="ud-contact-content-wrapper" style="padding: 25px;">
-          <div class="ud-contact-title mb-4">
-            <span>Kontaktujte nás</span>
-            <h2>
-              Ozvěte se nám, <br />
-              Společně najdeme řešení.
-            </h2>
-          </div>
-          <div class="ud-contact-info-wrapper">
-            <div class="ud-single-info d-flex mb-4">
-              <div class="ud-info-icon me-3" style="font-size: 32px;">
-                <i class="lni lni-map-marker"></i>
-              </div>
-              <div class="ud-info-meta">
-                <h5>Kontakt</h5>
-                <p>
-                  Email: <a href="mailto:kontakt@frentech.org">kontakt@frentech.org</a><br />
-                  Telefon: <a href="tel:+420733423037">733 423 037</a> 
-                </p>
-              </div>
-            </div>
-            <div class="ud-single-info d-flex">
-              <div class="ud-info-icon me-3" style="font-size: 32px;">
-                <i class="lni lni-envelope"></i>
-              </div>
-              <div class="ud-info-meta">
-                <h5>Sociální sítě</h5>
-                <p>Instagram: <a href="https://instagram.com/frentech_org" target="_blank">Frentech_org</a></p>
-                <p>Facebook: <a href="https://www.facebook.com/profile.php?id=61576707370467" target="_blank">Frentech</a></p>
-              </div>
-            </div>
-          </div>
-        </div> <!-- end content box -->
-      </div>
-    </div>
-  </div>
-</section>
-
-
-
-<!-- ====== Kontakt konec ====== -->
-
-
-
-
-
-
-      <!-- ====== Závěr start ====== -->
-  <footer class="ud-footer" data-wow-delay=".15s" style="animation-duration: 1s;">
-    <div class="container">
-      <div class="row justify-content-start">
-        <div class="col-xl-8 col-lg-7">
-          <div class="ud-footer-widgets">
-          </div>
-          <div class="ud-footer-bottom">
-            <p class="ud-footer-bottom-left">
-              Křižíkova 1258, Frenštát pod Radhoštěm, 744 01
-              <br>
-              IČ: 00601659 
-              <br>
-              DIČ: CZ00601659 <br>
-              <hr style="opacity:0">
-              2025, Všechna práva vyhrazena
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </footer>
-  <!-- ====== Závěr konec ====== -->
-
-    <!-- ====== Zpátky nahoru start ====== -->
-    <a href="#home" class="back-to-top">
-      <i class="lni lni-chevron-up"> </i>
+<!-- ─── FOOTER ─── -->
+<footer>
+  <div class="footer-inner">
+    <a href="#home" class="footer-logo">
+      <img src="assets/images/frenlogo2_converted.svg" alt="Frentech" />
     </a>
-    <!-- ====== Zpátky nahoru konec ====== -->
-    
-    <!-- ====== Všechen Javascript ====== -->
-    <script src="assets/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/js/wow.min.js"></script>
-    <script src="assets/js/main.js"></script>
-    <script>
-      // ==== menu scroolovani
-      const pageLink = document.querySelectorAll(".ud-menu-scroll");
+    <div class="footer-info">
+      Křižíkova 1258, Frenštát pod Radhoštěm, 744 01<br>
+      IČ: 00601659 &nbsp;·&nbsp; DIČ: CZ00601659<br>
+      © 2026 Frentech — Všechna práva vyhrazena
+    </div>
+  </div>
+</footer>
 
-      pageLink.forEach((elem) => {
-        elem.addEventListener("click", (e) => {
-          e.preventDefault();
-          document.querySelector(elem.getAttribute("href")).scrollIntoView({
-            behavior: "smooth",
-            offsetTop: 1 - 60,
-          });
-        });
-      });
-
-      // section menu active
-      function onScroll(event) {
-        const sections = document.querySelectorAll(".ud-menu-scroll");
-        const scrollPos =
-          window.pageYOffset ||
-          document.documentElement.scrollTop ||
-          document.body.scrollTop;
-
-        for (let i = 0; i < sections.length; i++) {
-          const currLink = sections[i];
-          const val = currLink.getAttribute("href");
-          const refElement = document.querySelector(val);
-          const scrollTopMinus = scrollPos + 73;
-          if (
-            refElement.offsetTop <= scrollTopMinus &&
-            refElement.offsetTop + refElement.offsetHeight > scrollTopMinus
-          ) {
-            document
-              .querySelector(".ud-menu-scroll")
-              .classList.remove("active");
-            currLink.classList.add("active");
-          } else {
-            currLink.classList.remove("active");
-          }
-        }
-      }
-
-      function showContactPopup(email, phone) {
-      const popup = document.getElementById('contactPopup');
-      document.getElementById('popupEmail').innerHTML = 
-        'Email: <a href="mailto:' + email + '">' + email + '</a>';
-      document.getElementById('popupPhone').innerHTML = 
-        'Telefon: <a href="tel:' + phone.replace(/\s+/g, '') + '">' + phone + '</a>';
-
-      popup.classList.add('show');
-    }
-
-
-      function closeContactPopup() {
-        const popup = document.getElementById('contactPopup');
-        popup.classList.remove('show');
-      }
-
-      // Optional: Close popup when clicking outside the content
-      window.onclick = function(event) {
-        const popup = document.getElementById('contactPopup');
-        if (event.target === popup) {
-          closeContactPopup();
-        }
-      };
-    </script>
-
-    <div id="contactPopup" class="contact-popup">
-      <div class="popup-content">
-        <div class="popup-header">
-          <h3>Kontakt</h3>
-        </div>
-        <p id="popupEmail"></p>
-        <p id="popupPhone"></p>
-      </div>
-<!-- Lightbox2 JS -->
-  <!-- Load jQuery first -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-  <!-- Then load Lightbox -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
-
-  <script>
-document.addEventListener("DOMContentLoaded", function() {
-  document.querySelectorAll('.menu-bg .nav-link').forEach(link => {
-    link.addEventListener('click', function() {
-      if (window.innerWidth < 992) {
-        const navbarCollapse = document.getElementById('mainNavbar');
-        const bsCollapse = bootstrap.Collapse.getOrCreateInstance(navbarCollapse);
-        bsCollapse.hide();
-      }
-    });
-  });
-});
-</script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
-
-  </body>
-</html>
+<a href="#home" class="back-top" id="backTop" aria-label="Zpět nahoru">↑</a>
