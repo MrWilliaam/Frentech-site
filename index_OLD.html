@@ -139,29 +139,6 @@
       gap: 48px;
     }
 
-    .mobile-menu-close {
-      position: absolute;
-      top: 28px;
-      right: 28px;
-      background: none;
-      border: 2px solid rgba(255,255,255,0.2);
-      color: var(--off);
-      font-size: 1.2rem;
-      width: 44px;
-      height: 44px;
-      border-radius: 50%;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: border-color 0.2s, color 0.2s;
-    }
-
-    .mobile-menu-close:hover {
-      border-color: var(--accent);
-      color: var(--accent);
-    }
-
     .mobile-menu.open { display: flex; }
 
     .mobile-menu a {
@@ -738,8 +715,8 @@
       .hero-visual { order: -1; }
       .services-grid { grid-template-columns: 1fr; }
       .service-card:nth-child(1) { border-radius: 20px 20px 0 0; }
-      .service-card:nth-child(2) { border-radius: 0; }
-      .service-card:nth-child(3) { border-radius: 0; }
+      .service-card:nth-child(2) { border-radius: 20px 20px 0 0; }
+      .service-card:nth-child(3) { border-radius: 0 0 20px 20px; }
       .service-card:nth-child(4) { border-radius: 0 0 20px 20px; }
       .about-grid { grid-template-columns: 1fr; gap: 48px; }
       .team-grid { grid-template-columns: repeat(2, 1fr); }
@@ -782,7 +759,6 @@
 
 <!-- Mobile menu -->
 <div class="mobile-menu" id="mobileMenu">
-  <button class="mobile-menu-close" id="mobileMenuClose" aria-label="Zavřít menu">✕</button>
   <a href="#home">Domov</a>
   <a href="#služby">Služby</a>
   <a href="#about">O nás</a>
@@ -973,7 +949,7 @@
       <div class="team-card anim-4">
         <img src="assets/images/team/team-04.png" alt="Vilém Janečka" class="team-avatar" />
         <div class="team-name">Vilém Janečka</div>
-        <div class="team-role">Web Maintenance</div>
+        <div class="team-role">Web Maintenance, Security systems</div>
         <ul class="team-socials">
           <li><a href="https://www.linkedin.com/in/vil%C3%A9m-jane%C4%8Dka-6418aa367/" target="_blank" aria-label="LinkedIn">
             <svg class="icon-li" viewBox="0 0 24 24"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.95v5.66H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 110-4.12 2.06 2.06 0 010 4.12zM3.56 20.45h3.55V9H3.56v11.45z"/></svg>
@@ -1045,58 +1021,9 @@
     <div class="footer-info">
       Křižíkova 1258, Frenštát pod Radhoštěm, 744 01<br>
       IČ: 00601659 &nbsp;·&nbsp; DIČ: CZ00601659<br>
-      © 2026 Frentech — Všechna práva vyhrazena.
+      © 2026 Frentech — Všechna práva vyhrazena
     </div>
   </div>
 </footer>
 
 <a href="#home" class="back-top" id="backTop" aria-label="Zpět nahoru">↑</a>
-
-<script>
-  // ─── BURGER MENU ───
-  const burger = document.getElementById('burger');
-  const mobileMenu = document.getElementById('mobileMenu');
-
-  burger.addEventListener('click', () => {
-    const isOpen = mobileMenu.classList.toggle('open');
-    burger.classList.toggle('open', isOpen);
-    burger.setAttribute('aria-expanded', isOpen);
-    document.body.style.overflow = isOpen ? 'hidden' : '';
-  });
-
-  // Close button inside menu
-  document.getElementById('mobileMenuClose').addEventListener('click', () => {
-    mobileMenu.classList.remove('open');
-    burger.classList.remove('open');
-    burger.setAttribute('aria-expanded', 'false');
-    document.body.style.overflow = '';
-  });
-
-  // Close menu when a link is clicked
-  mobileMenu.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-      mobileMenu.classList.remove('open');
-      burger.classList.remove('open');
-      burger.setAttribute('aria-expanded', 'false');
-      document.body.style.overflow = '';
-    });
-  });
-
-  // Close on Escape key
-  document.addEventListener('keydown', e => {
-    if (e.key === 'Escape' && mobileMenu.classList.contains('open')) {
-      mobileMenu.classList.remove('open');
-      burger.classList.remove('open');
-      burger.setAttribute('aria-expanded', 'false');
-      document.body.style.overflow = '';
-    }
-  });
-
-  // ─── BACK TO TOP ───
-  const backTop = document.getElementById('backTop');
-  window.addEventListener('scroll', () => {
-    backTop.classList.toggle('visible', window.scrollY > 400);
-  });
-</script>
-</body>
-</html>
